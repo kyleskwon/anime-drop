@@ -20,7 +20,6 @@ export function getAPIToken(){
 export function getLatestSeason(){
   return dispatch => {
     AL.getAPIToken()
-      .then(res => res.data.access_token)
       .then(token => {
         return AL.getAnimeSeason(2016, 'summer', token)
                  .then(res => dispatch(setLatestSeason(res.data)))

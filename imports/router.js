@@ -6,6 +6,7 @@ import store, { history } from './store';
 import Home from './ui/components/pages/Home';
 import About from './ui/components/pages/About';
 import Layout from './ui/components/layouts/MainLayout';
+import AnimeDetails from './ui/components/pages/AnimeDetails';
 
 const router = (
   <Provider store={store}>
@@ -13,6 +14,7 @@ const router = (
       <Route path="/" component={Layout}>
         <IndexRoute component={Home} />
         <Route path="/about" component={ About } />
+        <Route path="/anime/:id" component={ AnimeDetails } />
       </Route>
     </Router>
   </Provider>

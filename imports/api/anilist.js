@@ -14,6 +14,7 @@ const AL = {
       params: {
         year,
         season,
+        full_page: "full_page=true",
         access_token: token
       }
     }
@@ -31,8 +32,18 @@ const AL = {
     }
 
     let url = `${this.urls.root}${this.urls.accessToken}`;
-    return httpPromise('POST', url, options)
+    return httpPromise('POST', url, options).then(res => res.data.access_token)
+  },
+  getAnimeDetails(animeId, token){
+    let options = {
+        params: {
+          access_token: token
+        }
+    }
+    let url = `${this.urls.root}anime/${animeId}`;
+    return httpPromise('GET', url, options).then((res)=>{console.log(res)})
   }
+
 }
 
 export default AL;
