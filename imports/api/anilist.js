@@ -41,7 +41,7 @@ const AL = {
         }
     }
     let url = `${this.urls.root}anime/${animeId}`;
-    return httpPromise('GET', url, options).then((res)=>{console.log(res)})
+    return httpPromise('GET', url, options).then(res => res.data)
   }
 
 }

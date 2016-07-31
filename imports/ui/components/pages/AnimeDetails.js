@@ -8,12 +8,13 @@ class AnimeDetails extends React.Component {
   }
   componentWillMount () {
     AL.getAPIToken()
-     .then(token=>{AL.getAnimeDetails(this.props.params.id, token)})
+      .then(token=>AL.getAnimeDetails(this.props.params.id, token))
+      .then(details=>this.setState({details}))
 
   }
   render () {
     console.log(this.props)
-    return <div>"anime details"</div>
+    return <div>{JSON.stringify(this.state.details)}</div>
   }
 }
 export default AnimeDetails
