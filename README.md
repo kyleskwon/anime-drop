@@ -1,4 +1,4 @@
-# React Redux Meteor Boilerplate
+# Anime Drop - Latest Anime Season
 
 ##Installation
 
