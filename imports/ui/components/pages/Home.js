@@ -3,39 +3,45 @@ import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
 import Todos from '../../../api/collections/todos';
-import AddTodoForm from '../AddTodoForm';
-import  { createTodo, getAllTodos } from '../../actions/actions';
+import  { createTodo, getAllTodos, getLatestSeason } from '../../actions/actions';
 
 class Home extends Component {
   componentWillMount() {
-    //this.props.subscribe('allTodos');
-    console.log(this.props);
+    this.props.getLatestSeason();
     this.props.getAllTodos();
   }
   render(){
-    let { form, submitHandler, serverError, todos } = this.props;
+    let { form, submitHandler, serverError, todos, animes } = this.props;
+    let animeList = null;
+    if(animes.length > 0){
+      animeList = animes.map(anime => (
+        <li className="anime-item">
+          <h3>{anime.title_english}</h3>
+          <img src={anime.image_url_med} />
+        </li>
+      ))
+    }
+
     return (
       <div className="home">
         <div className="notifier">
           {serverError.error ? <div className="server-error">{serverError.error.reason}</div> : "" }
-          <ul>
-            {todos.map((todo, i )=> <li key={i}>{todo.text}</li>)}
-          </ul>
         </div>
-        <AddTodoForm onSubmit={submitHandler.bind(null, form)} />
+        <ul className="anime-container">
+          {animeList}
+        </ul>
       </div>
     )
   }
 }
 
 
-function mapStateToProps(state){
-  return {
-    serverError: state.serverError,
-    todos: state.todos,
-    form: state.form.addTodoForm
-  }
-}
+const mapStateToProps = ({ serverError, todos, form, animes }) => ({
+  serverError,
+  todos,
+  animes,
+  form: form.addTodoForm
+})
 
 function mapDispatchToProps(dispatch){
   return {
@@ -44,6 +50,9 @@ function mapDispatchToProps(dispatch){
     },
     getAllTodos: () => {
       dispatch(getAllTodos())
+    },
+    getLatestSeason(){
+      dispatch(getLatestSeason())
     }
   }
 }
