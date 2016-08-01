@@ -35,6 +35,7 @@ const AL = {
     return httpPromise('POST', url, options).then(res => res.data.access_token)
   },
   getAnimeDetails(animeId, token){
+    console.log(animeId)
     let options = {
         params: {
           access_token: token

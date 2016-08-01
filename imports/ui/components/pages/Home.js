@@ -55,18 +55,16 @@ const mapStateToProps = ({ serverError, todos, form, animes }) => ({
   form: form.addTodoForm
 })
 
-function mapDispatchToProps(dispatch){
-  return {
-    submitHandler: (form) => {
-      dispatch(createTodo(form.text.value.toLowerCase()))
-    },
-    getAllTodos: () => {
-      dispatch(getAllTodos())
-    },
-    getLatestSeason(){
-      dispatch(getLatestSeason())
-    }
+const mapDispatchToProps = dispatch => ({
+  submitHandler: (form) => {
+    dispatch(createTodo(form.text.value.toLowerCase()))
+  },
+  getAllTodos: () => {
+    dispatch(getAllTodos())
+  },
+  getLatestSeason(){
+    dispatch(getLatestSeason())
   }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
