@@ -14,26 +14,27 @@ class Home extends Component {
   }
 
   formatScore (averageScore) {
-    if (averageScore == 0) {
+    if (averageScore === 0) {
       return "Not yet rated"
     } else {
-      return parseInt(averageScore)/10
+      return averageScore
     }
   }
   render(){
     let { form, submitHandler, serverError, todos, animes } = this.props;
     let animeList = null;
     if(animes.length > 0){
-      console.log(animes);
-      animeList = animes.map((anime, i) => (
-        <li className="anime-item" key={i}>
-          <Link to={`/anime/${anime.id}`}>
-            <h3>{anime.title_english}</h3>
-            <img src={anime.image_url_med} />
-            <h4>{this.formatScore(anime.average_score)}</h4>
-          </Link>
-        </li>
-      ))
+      animeList = animes
+        .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
+        .map((anime, i) => (
+          <li className="anime-item" key={i}>
+            <Link to={`/anime/${anime.id}`}>
+              <h3>{anime.title_english}</h3>
+              <img src={anime.image_url_med} />
+              <h4>{this.formatScore(anime.average_score)}</h4>
+            </Link>
+          </li>
+        ))
     }
 
     return (

@@ -19,7 +19,7 @@ export function getLatestSeason(){
 
     function getAnimeSeason(year, season, token){
       return AL.getAnimeSeason(year, season, token)
-         .then(res => dispatch(setLatestSeason(res.data)))
+         .then(data => dispatch(setLatestSeason(data)))
          .catch(err => dispatch(serverError(err)));
     }
   }

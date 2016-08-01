@@ -22,6 +22,10 @@ const AL = {
 
     let url = `${this.urls.root}${this.urls.browse}`;
     return httpPromise('GET', url, options)
+      .then(res => res.data.map(anime => ({
+        ...anime,
+        average_score: parseInt(anime.average_score)/10
+      })))
   },
   getAPIToken(){
     let options = {
