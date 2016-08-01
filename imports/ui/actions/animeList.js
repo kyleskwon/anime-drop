@@ -31,10 +31,3 @@ export function setLatestSeason(animes){
     animes
   }
 }
-
-export function setAPIToken(accessToken){
-  return {
-    type: 'SET_ACCESS_TOKEN',
-    accessToken,
-  }
-}
