@@ -7,7 +7,8 @@ const AL = {
   urls: {
     root: 'http://anilist.co/api/',
     browse: 'browse/anime',
-    accessToken: 'auth/access_token'
+    accessToken: 'auth/access_token',
+    anime: 'anime/'
   },
   getAnimeSeason(year, season, token){
     let options = {
@@ -35,13 +36,12 @@ const AL = {
     return httpPromise('POST', url, options).then(res => res.data.access_token)
   },
   getAnimeDetails(animeId, token){
-    console.log(animeId)
     let options = {
         params: {
           access_token: token
         }
     }
-    let url = `${this.urls.root}anime/${animeId}`;
+    let url = `${this.urls.root}${this.urls.anime}${animeId}`;
     return httpPromise('GET', url, options).then(res => res.data)
   }
 

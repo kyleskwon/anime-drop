@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Todos from '../../../api/collections/todos';
-import  { createTodo, getAllTodos, getLatestSeason } from '../../actions/actions';
+import  { getLatestSeason } from '../../actions/animeList';
 
 class Home extends Component {
   componentWillMount() {
-    this.props.getLatestSeason();
-    this.props.getAllTodos();
+    if(this.props.animes.length === 0) {
+      this.props.getLatestSeason();
+    }
   }
 
   formatScore (averageScore) {
@@ -23,8 +24,9 @@ class Home extends Component {
     let { form, submitHandler, serverError, todos, animes } = this.props;
     let animeList = null;
     if(animes.length > 0){
-      animeList = animes.map(anime => (
-        <li className="anime-item">
+      console.log(animes);
+      animeList = animes.map((anime, i) => (
+        <li className="anime-item" key={i}>
           <Link to={`/anime/${anime.id}`}>
             <h3>{anime.title_english}</h3>
             <img src={anime.image_url_med} />
@@ -56,9 +58,6 @@ const mapStateToProps = ({ serverError, todos, form, animes }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  submitHandler: (form) => {
-    dispatch(createTodo(form.text.value.toLowerCase()))
-  },
   getAllTodos: () => {
     dispatch(getAllTodos())
   },

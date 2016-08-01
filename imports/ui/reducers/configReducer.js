@@ -1,8 +1,12 @@
-function reducer(state = {}, action = {}){
+const initialState = {
+  token: null,
+}
+
+function reducer(state = initialState, action = {}){
   switch(action.type) {
     case 'SET_ACCESS_TOKEN':
       return {
-        accessToken: action.accessToken
+        token: action.token
       }
     default:
       return state;
