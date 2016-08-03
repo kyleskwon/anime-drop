@@ -1,5 +1,5 @@
 {
-  "name": "frontendlinks",
+  "name": "animedrop",
   "private": true,
   "scripts": {
     "start": "meteor run",
@@ -29,5 +29,8 @@
     "eslint-plugin-jsx-a11y": "^2.0.1",
     "eslint-plugin-react": "^6.0.0",
     "flow-bin": "^0.30.0"
+  },
+  "engines": {
+    "node": "4.4.3"
   }
 }
