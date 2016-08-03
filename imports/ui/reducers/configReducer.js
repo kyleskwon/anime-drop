@@ -1,8 +1,12 @@
+// @flow
+type config = {
+  token: ?string
+}
 const initialState = {
-  token: null,
+  token: null
 }
 
-function reducer(state = initialState, action = {}){
+function reducer(state: config = initialState, action: Object = {}){
   switch(action.type) {
     case 'SET_ACCESS_TOKEN':
       return {

@@ -1,3 +1,4 @@
+// @flow
 import { combineReducers } from 'redux';
 import todos from './todosReducer';
 import serverError from './serverErrorReducer';

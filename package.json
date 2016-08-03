@@ -2,7 +2,8 @@
   "name": "frontendlinks",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^10.0.0",
     "eslint-plugin-babel": "^3.3.0",

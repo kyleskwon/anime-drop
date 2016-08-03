@@ -1,9 +1,10 @@
-function reducer(state = [], action = {}){
+// @flow
+function reducer(state: Array<Object> = [], action: Object = {}){
   switch(action.type) {
     case 'SET_LATEST_SEASON':
-      return action.animes;
+      return action.animes
     default:
-      return state;
+      return state
   }
 }
 

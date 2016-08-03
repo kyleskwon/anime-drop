@@ -12,7 +12,7 @@ export function getLatestSeason() {
         .then(newToken => getAnimeSeason(2016, 'summer', newToken))
     }
 
-    function getAnimeSeason(year, season, accessToken) {
+    function getAnimeSeason(year: number, season: string, accessToken: string) {
       return AL.getAnimeSeason(year, season, accessToken)
          .then(data => dispatch(setLatestSeason(data)))
          .catch(err => dispatch(serverError(err)))
@@ -20,7 +20,7 @@ export function getLatestSeason() {
   }
 }
 
-export function setLatestSeason(animes) {
+export function setLatestSeason(animes: Array) {
   return {
     type: 'SET_LATEST_SEASON',
     animes,
