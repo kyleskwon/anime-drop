@@ -1,5 +1,5 @@
 // @flow
-import Meteor from 'meteor';
+import Meteor from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import '../api/methods.js';
 
