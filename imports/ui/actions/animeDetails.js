@@ -1,23 +1,23 @@
-import AL from '../../api/anilist';
-import { setAccessToken, getAccessToken } from './accessToken';
+import AL from '../../api/anilist'
+import { getAccessToken } from './accessToken'
 
-const setAnimeDetails = (animeDetails) => ({
-  type: "SET_ANIME_DETAILS",
-  animeDetails
+export const setAnimeDetails = (animeDetails) => ({
+  type: 'SET_ANIME_DETAILS',
+  animeDetails,
 })
 
-export function getAnimeDetails (id) {
+export function getAnimeDetails(id) {
   return (dispatch, getState) => {
-    let token = getState().config.token;
-    if(token) {
-      return getAnimeDetails(id, token);
-    } else {
-      return dispatch(getAccessToken())
-        .then(token => getAnimeDetails(id, token))
+    const token = getState().config.token
+    if (token) {
+      return getAnimeDetailsAPI(id, token)
     }
 
-    function getAnimeDetails(id, token){
-      return AL.getAnimeDetails(id, token)
+    return dispatch(getAccessToken())
+      .then(newToken => getAnimeDetails(id, newToken))
+
+    function getAnimeDetailsAPI(animeId, apiToken) {
+      return AL.getAnimeDetails(animeId, apiToken)
         .then(details => dispatch(setAnimeDetails(details)))
         .catch(err => console.error(err))
     }

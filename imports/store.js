@@ -1,27 +1,19 @@
-import { applyMiddleware, createStore, compose } from 'redux';
-import {syncHistoryWithStore} from 'react-router-redux';
-import {browserHistory} from 'react-router';
-import { Tracker } from 'meteor/tracker';
+import { applyMiddleware, createStore } from 'redux'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { browserHistory } from 'react-router'
 
-//redux middleware
-import Todos from './api/collections/todos';
-import createLogger from 'redux-logger';
-import reduxThunk from 'redux-thunk';
+// redux middleware
+import createLogger from 'redux-logger'
+import reduxThunk from 'redux-thunk'
 
-import rootReducer from './ui/reducers/rootReducer';
 
-const logger = createLogger();
-const middleware = [reduxThunk, logger];
+import rootReducer from './ui/reducers/rootReducer'
 
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
+const logger = createLogger()
+const middleware = [reduxThunk, logger]
 
-Tracker.autorun(() => {
-  store.dispatch({
-    type: 'SET_TODOS',
-    todos: Todos.find().fetch(),
-  });
-});
+const store = createStore(rootReducer, {}, applyMiddleware(...middleware))
 
-export default store;
+export default store
 
-export const history = syncHistoryWithStore(browserHistory, store);
+export const history = syncHistoryWithStore(browserHistory, store)
