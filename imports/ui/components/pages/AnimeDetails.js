@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import AL from '../../../api/anilist'
 import { getAnimeDetails } from '../../actions/animeDetails';
@@ -5,6 +6,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 class AnimeDetails extends React.Component {
+  props: {
+    animeCache: Array<Object>,
+    routeParams: Object,
+    getAnimeDetails: Function,
+    params: Object
+  }
+
   componentWillMount () {
     let animeId = this.props.routeParams.id;
     if(!this.props.animeCache[animeId]) {
@@ -26,7 +34,7 @@ class AnimeDetails extends React.Component {
 const mapStateToProps = ({ animeCache }) => ({ animeCache });
 
 const mapDispatchToProps = dispatch => ({
-  getAnimeDetails(id){
+  getAnimeDetails(id: string){
     dispatch(getAnimeDetails(id))
   }
 })

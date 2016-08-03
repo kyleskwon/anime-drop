@@ -1,7 +1,9 @@
+// @flow
+import Meteor from 'meteor';
 import { HTTP } from 'meteor/http';
 import '../api/methods.js';
 
-export function httpPromise(type, url, options){
+export function httpPromise(type: string, url: string, options: Object){
   var promise = new Promise(http);
 
   function http(resolve,reject){
@@ -17,7 +19,7 @@ export function httpPromise(type, url, options){
 }
 
 
-export function callMethodPromise(name, ...args){
+export function callMethodPromise(name: string, ...args: any){
   return new Promise(function(resolve, reject){
     Meteor.call(name, ...args, function(err, data){
       if(err){

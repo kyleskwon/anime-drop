@@ -1,3 +1,4 @@
+// @flow
 import { httpPromise } from '../helpers/helperPromises';
 
 const client_id = 'tyranel-wi4tj';
@@ -10,7 +11,7 @@ const AL = {
     accessToken: 'auth/access_token',
     anime: 'anime/'
   },
-  getAnimeSeason(year, season, token){
+  getAnimeSeason(year: number, season: string, token: string): Promise<*>{
     let options = {
       params: {
         year,
@@ -20,14 +21,14 @@ const AL = {
       }
     }
 
-    let url = `${this.urls.root}${this.urls.browse}`;
+    let url: string = `${this.urls.root}${this.urls.browse}`;
     return httpPromise('GET', url, options)
-      .then(res => res.data.map(anime => ({
+      .then((res: Object) => res.data.map((anime: Object) => ({
         ...anime,
         average_score: parseInt(anime.average_score)/10
       })))
   },
-  getAPIToken(){
+  getAPIToken(): Promise<*> {
     let options = {
       data: {
         "grant_type": 'client_credentials',
@@ -39,7 +40,7 @@ const AL = {
     let url = `${this.urls.root}${this.urls.accessToken}`;
     return httpPromise('POST', url, options).then(res => res.data.access_token)
   },
-  getAnimeDetails(animeId, token){
+  getAnimeDetails(animeId: string, token: string): Promise<*>{
     let options = {
         params: {
           access_token: token

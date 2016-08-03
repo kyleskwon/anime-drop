@@ -1,20 +1,24 @@
-import { Meteor } from 'meteor/meteor';
-import React, { Component } from 'react';
+// @flow
+import { Meteor } from 'meteor/meteor'
+import React, { Component } from 'react'
 
-export default ComposedComponent => class extends Component {
+export default (ComposedComponent: ReactClass<*>) => class extends Component {
+
+  subs: Object
+
   constructor() {
     super();
     this.subs = {};
   }
 
-  subscribe(name, ...args) {
+  subscribe(name :string, ...args: any) {
     if (this.subs[name])
       this.subs[name].stop();
 
     this.subs[name] = Meteor.subscribe(name, ...args);
   }
 
-  subscriptionReady(name) {
+  subscriptionReady(name: string) {
     if (this.subs[name].ready())
       return this.subs[name].ready();
   }

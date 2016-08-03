@@ -1,7 +1,8 @@
-import React from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
-import { connect } from 'react-redux';
+// @flow
+import React from 'react'
+import Header from '../Header'
+import Footer from '../Footer'
+import { connect } from 'react-redux'
 
 class Main extends React.Component {
   render(){

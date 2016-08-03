@@ -1,19 +1,24 @@
+// @flow
 import React, { Component } from 'react'
-import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import Todos from '../../../api/collections/todos';
 import  { getLatestSeason } from '../../actions/animeList';
 
 class Home extends Component {
+  props: {
+    submitHandler: Function,
+    serverError: Object,
+    animes: Array<Object>,
+    getLatestSeason: Function
+  }
   componentWillMount() {
     if(this.props.animes.length === 0) {
       this.props.getLatestSeason();
     }
   }
 
-  formatScore (averageScore) {
+  formatScore (averageScore: number) {
     if (averageScore === 0) {
       return "Not yet rated"
     } else {
@@ -21,7 +26,7 @@ class Home extends Component {
     }
   }
   render(){
-    let { form, submitHandler, serverError, todos, animes } = this.props;
+    let { submitHandler, serverError, animes } = this.props;
     let animeList = null;
     if(animes.length > 0){
       animeList = animes
@@ -51,20 +56,12 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = ({ serverError, todos, form, animes }) => ({
-  serverError,
-  todos,
-  animes,
-  form: form.addTodoForm
-})
+const mapStateToProps = ({ serverError, animes}) => ({ serverError, animes })
 
 const mapDispatchToProps = dispatch => ({
-  getAllTodos: () => {
-    dispatch(getAllTodos())
-  },
   getLatestSeason(){
     dispatch(getLatestSeason())
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
