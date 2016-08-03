@@ -1,5 +1,10 @@
 // @flow
-function reducer(state: Object = {}, action: Object = {}){
+type action = {
+  type: string,
+  [key: string]: any
+}
+
+function reducer(state: Object = {}, action: action){
   switch(action.type) {
     case 'SET_ANIME_DETAILS':
       let newState = {

@@ -1,22 +1,50 @@
 // @flow
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
-import  { getLatestSeason } from '../../actions/animeList';
+import SeasonSelect from '../SeasonSelect'
+import  { getSeason  } from '../../actions/animeList'
 
 class Home extends Component {
   props: {
     submitHandler: Function,
     serverError: Object,
-    animes: Array<Object>,
-    getLatestSeason: Function
+    seasons: Object,
+    getSeason: Function,
+    params: Object,
   }
-  componentWillMount() {
-    if(this.props.animes.length === 0) {
-      this.props.getLatestSeason();
+
+  loadAnime(props){
+    const { params: { year, season }, getSeason, seasons } = props
+    if(year && season) {
+      if(!seasons[season + '-' + year]) {
+        getSeason(year, season)
+      }
+    } else if(seasons.length === 0) {
+      getSeason(2016, 'summer')
     }
   }
+
+  componentWillMount(){
+    this.loadAnime(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.loadAnime(nextProps)
+  }
+
+  // componentWillReceiveProps(prev, next){
+  //   console.log('will receive props')
+  //   console.log(prev, next)
+  //   // if(prev.params.year !== next.params.year && prev.params.season !== next.params.season){
+  //   //   return true
+  //   // }
+  // }
+
+  // componentWillUpdate(){
+  //   console.log('willupdate')
+  // }
 
   formatScore (averageScore: number) {
     if (averageScore === 0) {
@@ -26,10 +54,14 @@ class Home extends Component {
     }
   }
   render(){
-    let { submitHandler, serverError, animes } = this.props;
-    let animeList = null;
-    if(animes.length > 0){
-      animeList = animes
+    let { submitHandler, serverError, seasons, params: {year, season} } = this.props;
+    let thisSeason = seasons[season + '-' + year];
+    let animeList = null
+
+    console.log(thisSeason)
+
+    if(thisSeason){
+      animeList = thisSeason
         .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
         .map((anime, i) => (
           <li className="anime-item" key={i}>
@@ -44,6 +76,7 @@ class Home extends Component {
 
     return (
       <div className="home">
+        <SeasonSelect />
         <div className="notifier">
           {serverError.error ? <div className="server-error">{serverError.error.reason}</div> : "" }
         </div>
@@ -56,11 +89,11 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = ({ serverError, animes}) => ({ serverError, animes })
+const mapStateToProps = ({ serverError, seasons}) => ({ serverError, seasons })
 
 const mapDispatchToProps = dispatch => ({
-  getLatestSeason(){
-    dispatch(getLatestSeason())
+  getSeason(year, season){
+    dispatch(getSeason(year, season))
   }
 })
 

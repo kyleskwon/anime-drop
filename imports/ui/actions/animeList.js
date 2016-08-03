@@ -2,27 +2,31 @@ import AL from '../../api/anilist'
 import { serverError } from './errors'
 import { getAccessToken } from './accessToken'
 
-export function getLatestSeason() {
+export function getSeason(year, season) {
   return (dispatch, getState) => {
     const token = getState().config.token
     if (token) {
-      getAnimeSeason(2016, 'summer', token)
+      getAnimeSeason(year, season, token)
     } else {
       dispatch(getAccessToken())
-        .then(newToken => getAnimeSeason(2016, 'summer', newToken))
+        .then(newToken => getAnimeSeason(year, season, newToken))
     }
 
     function getAnimeSeason(year: number, season: string, accessToken: string) {
       return AL.getAnimeSeason(year, season, accessToken)
-         .then(data => dispatch(setLatestSeason(data)))
+         .then(data => dispatch(setSeason(year, season, data)))
          .catch(err => dispatch(serverError(err)))
     }
   }
 }
 
-export function setLatestSeason(animes: Array) {
+export function setSeason(year: number, season: string, animes: Array) {
   return {
-    type: 'SET_LATEST_SEASON',
-    animes,
+    type: 'SET_SEASON',
+    payload: {
+      year,
+      season,
+      animes
+    }
   }
 }
