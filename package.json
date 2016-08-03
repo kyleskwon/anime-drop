@@ -32,7 +32,4 @@
     "eslint-plugin-react": "^6.0.0",
     "flow-bin": "^0.30.0"
   }
-  "engines": {
-    "node": "4.4.3"
-  }
 }
