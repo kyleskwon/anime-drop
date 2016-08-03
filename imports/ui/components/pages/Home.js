@@ -34,18 +34,6 @@ class Home extends Component {
     this.loadAnime(nextProps)
   }
 
-  // componentWillReceiveProps(prev, next){
-  //   console.log('will receive props')
-  //   console.log(prev, next)
-  //   // if(prev.params.year !== next.params.year && prev.params.season !== next.params.season){
-  //   //   return true
-  //   // }
-  // }
-
-  // componentWillUpdate(){
-  //   console.log('willupdate')
-  // }
-
   formatScore (averageScore: number) {
     if (averageScore === 0) {
       return "Not yet rated"
