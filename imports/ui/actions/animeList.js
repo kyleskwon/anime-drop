@@ -5,12 +5,12 @@ import { getAccessToken } from './accessToken'
 export function getSeason(year, season) {
   return (dispatch, getState) => {
     const token = getState().config.token
-    if (token) {
-      getAnimeSeason(year, season, token)
-    } else {
+
+    if (token)
+      getAnimeSeason(year, season, token.access_token)
+    else
       dispatch(getAccessToken())
-        .then(newToken => getAnimeSeason(year, season, newToken))
-    }
+        .then(newToken => getAnimeSeason(year, season, newToken.access_token))
 
     function getAnimeSeason(year: number, season: string, accessToken: string) {
       return AL.getAnimeSeason(year, season, accessToken)

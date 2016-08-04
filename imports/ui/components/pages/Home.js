@@ -17,10 +17,8 @@ class Home extends Component {
 
   loadAnime(props){
     const { params: { year, season }, getSeason, seasons } = props
-    if(year && season) {
-      if(!seasons[season + '-' + year]) {
-        getSeason(year, season)
-      }
+    if(year && season && !seasons[season + '-' + year]) {
+      getSeason(year, season)
     } else if(seasons.length === 0) {
       getSeason(2016, 'summer')
     }
@@ -35,18 +33,13 @@ class Home extends Component {
   }
 
   formatScore (averageScore: number) {
-    if (averageScore === 0) {
-      return "Not yet rated"
-    } else {
-      return averageScore
-    }
+    return averageScore === 0 ? averageScore : "Not yet rated"
   }
-  render(){
-    let { submitHandler, serverError, seasons, params: {year, season} } = this.props;
-    let thisSeason = seasons[season + '-' + year];
-    let animeList = null
 
-    console.log(thisSeason)
+  render(){
+    let { submitHandler, serverError, seasons, params: {year, season} } = this.props
+    let thisSeason = seasons[season + '-' + year]
+    let animeList = null
 
     if(thisSeason){
       animeList = thisSeason

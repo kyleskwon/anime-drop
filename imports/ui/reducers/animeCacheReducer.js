@@ -8,7 +8,7 @@ function reducer(state: Object = {}, action: action){
   switch(action.type) {
     case 'SET_ANIME_DETAILS':
       let newState = {
-        ...state.anime
+        ...state
       };
       newState[action.animeDetails.id] = action.animeDetails;
       return newState;

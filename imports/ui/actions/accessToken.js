@@ -1,7 +1,14 @@
 // @flow
 import AL from '../../api/anilist'
 
-export const setAccessToken = (token: string) => ({
+type token = {
+  "access_token": string,
+  "token_type": string,
+  "expires": number,
+  "expires_in": number
+}
+
+export const setAccessToken = (token: token) => ({
   type: 'SET_ACCESS_TOKEN',
   token,
 })
