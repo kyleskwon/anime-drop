@@ -6,9 +6,9 @@ class SeasonSelect extends Component {
   render() {
     return (
       <div>
-        <Link to="/summer/2016" >Summer 2016</Link>
-        <Link to="/spring/2016" >Spring 2016</Link>
-        <Link to="/winter/2015" >Winter 2015</Link>
+        <Link to="/2016/summer" >Summer 2016</Link>
+        <Link to="/2016/spring" >Spring 2016</Link>
+        <Link to="/2015/winter" >Winter 2015</Link>
       </div>
     )
   }
