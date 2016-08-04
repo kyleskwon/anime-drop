@@ -12,14 +12,16 @@ export const setAnimeDetails = (animeDetails: Object) => ({
 
 export const getAnimeDetails = (id: string) => (dispatch: dispatch, getState: getState) => {
   const token = getState().config.token
+  console.log(token)
   if (token) {
     return getAnimeDetailsAPI(id, token.access_token)
   }
 
   return dispatch(getAccessToken())
-    .then(newToken => getAnimeDetails(id, newToken.access_token))
+    .then(newToken => getAnimeDetailsAPI(id, newToken.access_token))
 
   function getAnimeDetailsAPI(animeId: string, apiToken: string) {
+    console.log(apiToken)
     return AL.getAnimeDetails(animeId, apiToken)
       .then(details => dispatch(setAnimeDetails(details)))
       .catch(err => console.error(err))
