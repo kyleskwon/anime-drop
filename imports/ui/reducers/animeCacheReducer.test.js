@@ -1,6 +1,6 @@
-jest.unmock('./animeCacheReducer'); // unmock to use the actual implementation of sum
+jest.unmock('./animeCacheReducer')
 
-import animeCacheReducer from './animeCacheReducer';
+import animeCacheReducer from './animeCacheReducer'
 
 describe('anime cache adds anime to cache', () => {
   it('adds 1 + 2 to equal 3', () => {
@@ -29,8 +29,8 @@ describe('anime cache adds anime to cache', () => {
         title: "bleach",
         id: "456"
       }
-    };
+    }
 
     expect(animeCacheReducer(state, action)).toEqual(expectedState);
-  });
-});
+  })
+})
