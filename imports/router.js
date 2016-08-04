@@ -16,7 +16,7 @@ const router = (
         <IndexRoute component={Home} />
         <Route path="/about" component={About} />
         <Route path="/anime/:id" component={AnimeDetails} />
-        <Route path="/:season/:year" component={Home} />
+        <Route path="/:year/:season" component={Home} />
       </Route>
     </Router>
   </Provider>
