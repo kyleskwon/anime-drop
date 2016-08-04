@@ -46,8 +46,6 @@ class AnimeDetails extends React.Component {
       <Link to="/">home</Link>
       <div className="anime-details">
         {content}
-        {/* <h3 className="details-title">{details.title_romaji}</h3>
-        <img className="details-image" src={details.image_url_med}/> */}
       </div>
       {JSON.stringify(details)}
     </div>
