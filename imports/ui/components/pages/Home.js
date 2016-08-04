@@ -33,7 +33,7 @@ class Home extends Component {
   }
 
   formatScore (averageScore: number) {
-    return averageScore === 0 ? averageScore : "Not yet rated"
+    return averageScore === 0 ? "Not yet rated" : averageScore
   }
 
   render(){
