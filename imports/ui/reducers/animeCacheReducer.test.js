@@ -1,14 +1,6 @@
-// "use strict";
 jest.unmock('./animeCacheReducer'); // unmock to use the actual implementation of sum
 
-// import animeCacheReducer from './animeCacheReducer';
 import animeCacheReducer from './animeCacheReducer';
-// let animeCacheReducer = (state, action) => {
-//   let newState = {}
-//   console.log(action)
-//   newState[action.animeDetails.id] = action.animeDetails;
-//   return newState
-// }
 
 describe('anime cache adds anime to cache', () => {
   it('adds 1 + 2 to equal 3', () => {
