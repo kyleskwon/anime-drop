@@ -2,6 +2,7 @@
 import React from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
+import ErrorPopup from '../ErrorPopup'
 import { connect } from 'react-redux'
 
 class Main extends React.Component {
@@ -11,6 +12,7 @@ class Main extends React.Component {
         <Header />
           {this.props.children}
         <Footer />
+        <ErrorPopup />
       </main>
     )
   }

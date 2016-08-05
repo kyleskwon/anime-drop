@@ -2,6 +2,14 @@ $PATH = '../imports/ui/styles/'
 
 @import 'nib'
 
+@import $PATH + '_variables'
+@import $PATH + '_mixins'
+
 global-reset()
 @import $PATH + '_base'
-@import $PATH + '_latestAnime'
+
+//components
+@import $PATH + '_errorPopup'
+
+//Pages
+@import $PATH + '_seasons'

@@ -30,17 +30,11 @@ class Home extends Component {
     }
   }
 
-  componentDidMount(){
-    console.log('component did mount')
-  }
-
   componentWillMount(){
-    console.log('willmount')
     this.loadAnime(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('will receive props')
     this.loadAnime(nextProps)
   }
 
@@ -70,9 +64,11 @@ class Home extends Component {
         .map((anime, i) => (
           <li className="anime-item" key={i}>
             <Link to={`/anime/${anime.id}`}>
-              <h3>{anime.title_english}</h3>
-              <img src={anime.image_url_med} />
-              <h4>{this.formatScore(anime.average_score)}</h4>
+              <img src={anime.image_url_lge} />
+              <div className="overlay">
+                <h3>{anime.title_romaji}</h3>
+                <div class="score">{this.formatScore(anime.average_score)}</div>
+              </div>
             </Link>
           </li>
         ))
@@ -81,9 +77,6 @@ class Home extends Component {
     return (
       <div className="home">
         <SeasonSelect />
-        <div className="notifier">
-          {serverError.error ? <div className="server-error">{serverError.error.reason}</div> : "" }
-        </div>
         <ul className="anime-container">
           {animeList}
         </ul>
@@ -93,7 +86,7 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = ({ serverError, seasons, config}) => ({ serverError, seasons, config })
+const mapStateToProps = ({  seasons, config}) => ({ seasons, config })
 
 const mapDispatchToProps = dispatch => ({
   getSeason(year, season){
