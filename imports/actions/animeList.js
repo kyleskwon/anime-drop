@@ -1,9 +1,10 @@
-import AL from '../../api/anilist'
+// @flow
+import AL from '../api/anilist'
 import { serverError } from './errors'
 import { getAccessToken } from './accessToken'
 
-export function getSeason(year, season) {
-  return (dispatch, getState) => {
+export function getSeason(year: number, season: string) {
+  return (dispatch: Function, getState: Function) => {
     const token = getState().config.token
 
     if (token)
@@ -20,7 +21,7 @@ export function getSeason(year, season) {
   }
 }
 
-export function setSeason(year: number, season: string, animes: Array) {
+export function setSeason(year: number, season: string, animes: Array<Object>) {
   return {
     type: 'SET_SEASON',
     payload: {

@@ -8,27 +8,39 @@ import  { getSeason  } from '../../../actions/animeList'
 
 class Home extends Component {
   props: {
-    submitHandler: Function,
     serverError: Object,
     seasons: Object,
     getSeason: Function,
     params: Object,
+    config: Object
   }
 
   loadAnime(props){
-    const { params: { year, season }, getSeason, seasons } = props
+    const {
+      getSeason,
+      seasons,
+      params: { year, season },
+      config: { currentSeason }
+    } = props
+
     if(year && season && !seasons[season + '-' + year]) {
       getSeason(year, season)
-    } else if(seasons.length === 0) {
-      getSeason(2016, 'summer')
+    } else if(Object.keys(seasons).length === 0){
+      getSeason(currentSeason.year, currentSeason.season)
     }
   }
 
+  componentDidMount(){
+    console.log('component did mount')
+  }
+
   componentWillMount(){
+    console.log('willmount')
     this.loadAnime(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('will receive props')
     this.loadAnime(nextProps)
   }
 
@@ -37,11 +49,22 @@ class Home extends Component {
   }
 
   render(){
-    let { submitHandler, serverError, seasons, params: {year, season} } = this.props
-    let thisSeason = seasons[season + '-' + year]
-    let animeList = null
+    const {
+      serverError,
+      seasons,
+      params: { year, season },
+      config: { currentSeason }
+    } = this.props
+    let thisSeason,
+        animeList
 
-    if(thisSeason){
+    if(year && season) {
+      thisSeason = seasons[year + '-' + season]
+    } else {
+      thisSeason = seasons[currentSeason.year + '-' + currentSeason.season]
+    }
+
+    if(thisSeason) {
       animeList = thisSeason
         .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
         .map((anime, i) => (
@@ -70,7 +93,7 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = ({ serverError, seasons}) => ({ serverError, seasons })
+const mapStateToProps = ({ serverError, seasons, config}) => ({ serverError, seasons, config })
 
 const mapDispatchToProps = dispatch => ({
   getSeason(year, season){
