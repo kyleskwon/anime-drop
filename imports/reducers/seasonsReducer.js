@@ -6,8 +6,17 @@ function reducer(state: Object = {}, action: Object = {}){
       let newSeason = { animes }
       let newState = { ...state }
       newState[`${year}-${season}`] = animes
-
       return newState
+    case 'LOADING_SEASON_PENDING':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'LOADING_SEASON_COMPLETE':
+      return {
+        ...state,
+        loading: false
+      }
     default:
       return state
   }

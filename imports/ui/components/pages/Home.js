@@ -15,7 +15,8 @@ class Home extends Component {
     config: Object
   }
 
-  loadAnime(props){
+  loadAnime(newProps, oldProps){
+    let props = newProps || this.props
     const {
       getSeason,
       seasons,
@@ -23,7 +24,7 @@ class Home extends Component {
       config: { currentSeason }
     } = props
 
-    if(year && season && !seasons[season + '-' + year]) {
+    if(year && season && !seasons[year + '-' + season]) {
       getSeason(year, season)
     } else if(Object.keys(seasons).length === 0){
       getSeason(currentSeason.year, currentSeason.season)
@@ -31,11 +32,19 @@ class Home extends Component {
   }
 
   componentWillMount(){
-    this.loadAnime(this.props)
+    this.loadAnime()
   }
 
   componentWillReceiveProps(nextProps) {
-    this.loadAnime(nextProps)
+    if(
+      this.props.seasons.loading !== nextProps.seasons.loading ||
+      this.props.config.token !== nextProps.config.token
+    ){
+      return
+    }
+    if(!this.props.seasons.loading){
+      this.loadAnime(nextProps)
+    }
   }
 
   formatScore (averageScore: number) {
