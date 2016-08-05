@@ -14,18 +14,39 @@ class AnimeDetails extends React.Component {
   }
 
   componentWillMount () {
-    let animeId = this.props.routeParams.id;
+    console.log('component will mount', this.props);
+    let animeId = this.props.params.id;
     if(!this.props.animeCache[animeId]) {
-      this.props.getAnimeDetails(this.props.routeParams.id);
+      this.props.getAnimeDetails(this.props.params.id);
     } else {
       console.log('Cache already has this anime')
     }
   }
+
+  componentWillReceiveProps () {
+
+  }
   render () {
     const { animeCache } = this.props;
+    let content = null;
     let details = animeCache[this.props.params.id];
+    if (details) {
+      console.log('got details');
+      let averageScore = (Math.round(parseInt(details.average_score)))/10;
+      content = <div>
+        <p>{details.title_romaji}</p>
+        <img src={details.image_url_lge} />
+        <p>{averageScore}</p>
+      </div>
+    } else {
+      console.log('loading');
+      content = <div>Loading...</div>
+    }
     return <div>
       <Link to="/">home</Link>
+      <div className="anime-details">
+        {content}
+      </div>
       {JSON.stringify(details)}
     </div>
   }
