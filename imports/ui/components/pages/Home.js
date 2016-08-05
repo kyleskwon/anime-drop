@@ -39,7 +39,7 @@ class Home extends Component {
   }
 
   formatScore (averageScore: number) {
-    return averageScore === 0 ? "Not yet rated" : averageScore
+    return averageScore === 0 ? "" : averageScore
   }
 
   render(){
@@ -66,8 +66,8 @@ class Home extends Component {
             <Link to={`/anime/${anime.id}`}>
               <img src={anime.image_url_lge} />
               <div className="overlay">
-                <h3>{anime.title_romaji}</h3>
-                <div class="score">{this.formatScore(anime.average_score)}</div>
+                <h3><span>{anime.title_romaji}</span></h3>
+                {anime.average_score ? <div className="score">{this.formatScore(anime.average_score)}</div> : null}
               </div>
             </Link>
           </li>

@@ -4,10 +4,11 @@
   flex-wrap wrap
 
 .anime-item
-  background skyblue
+  background white
   position relative
   width 25%
   height 0
+  overflow hidden
   padding-bottom 30%
 
   a
@@ -17,7 +18,6 @@
     position absolute
     bottom 0
     left 0
-    background rgba(0,0,0,0.1)
     height 100%
     width 100%
 
@@ -26,11 +26,50 @@
     width 100%
 
   h3
+    font-family Varela Round
     position absolute
-    bottom 0
+    top 10%
     left 0
-    background black
+    padding-left 20px
     color white
 
+    &:before
+      background rgba(135,206,250,1)
+      height 100%
+      content ""
+      padding 12px 10px
+      padding-bottom 0
+      padding-left 0
+      position absolute
+      left 0
+      top -6px
+
+    &:after
+      background rgba(0,0,0,1)
+      content ""
+      height 100%
+      padding 12px 10px
+      padding-bottom 0
+      padding-left 0
+      position absolute
+      left 10px
+      top -6px
+
+    span
+      white-space pre-wrap
+      background black
+      padding 10px
+      padding-left 0
+      line-height 1.8em
+
   .score
+    color white
+    font-family Varela Round
+    border-top skyblue 3px solid
+    border-left skyblue 3px solid
+    background black
+    position absolute
+    right 0
+    bottom 0
+    padding 10px
     font-size 20px
