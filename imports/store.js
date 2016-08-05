@@ -8,7 +8,7 @@ import createLogger from 'redux-logger'
 import reduxThunk from 'redux-thunk'
 
 
-import rootReducer from './ui/reducers/rootReducer'
+import rootReducer from './reducers/rootReducer'
 
 const logger = createLogger()
 const middleware = [reduxThunk, logger]

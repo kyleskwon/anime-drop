@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import AL from '../../../api/anilist'
-import { getAnimeDetails } from '../../actions/animeDetails';
+import { getAnimeDetails } from '../../../actions/animeDetails';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 

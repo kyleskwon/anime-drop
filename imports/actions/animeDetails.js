@@ -1,5 +1,5 @@
 // @flow
-import AL from '../../api/anilist'
+import AL from '../api/anilist'
 import { getAccessToken } from './accessToken'
 
 type dispatch = (action: Object) => Object

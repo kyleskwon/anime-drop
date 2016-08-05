@@ -1,5 +1,5 @@
 // @flow
-import AL from '../../api/anilist'
+import AL from '../api/anilist'
 
 type token = {
   "access_token": string,
