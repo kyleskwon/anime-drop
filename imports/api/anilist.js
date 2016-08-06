@@ -13,7 +13,8 @@ type ALtype = {
   },
   getAnimeSeason: Function,
   getAPIToken: Function,
-  getAnimeDetails: Function
+  getAnimeDetails: Function,
+  getAnimeDetailsSmall: Function
 }
 
 const AL: ALtype = {
@@ -53,6 +54,15 @@ const AL: ALtype = {
     return httpPromise('POST', url, options).then(res => res.data)
   },
   getAnimeDetails(animeId: string, token: string): Promise<*>{
+    let options = {
+        params: {
+          access_token: token
+        }
+    }
+    let url = `${this.urls.root}${this.urls.anime}${animeId}/page`;
+    return httpPromise('GET', url, options).then(res => res.data)
+  },
+  getAnimeDetailsSmall(animeId: string, token: string): Promise<*>{
     let options = {
         params: {
           access_token: token

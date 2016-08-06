@@ -48,6 +48,7 @@ class Home extends Component {
   }
 
   formatScore (averageScore: number) {
+    console.log(averageScore)
     return averageScore === 0 ? "" : averageScore
   }
 
