@@ -33,21 +33,24 @@ class AnimeDetails extends React.Component {
     if (details) {
       console.log('got details');
       let averageScore = (Math.round(parseInt(details.average_score)))/10;
+      let description = details.description.replace(/<[^>]*>/ig, "");
       content = <div>
-        <p>{details.title_romaji}</p>
         <img src={details.image_url_lge} />
-        <p>{averageScore}</p>
+        <div className="details-container">
+          <p className="title">{details.title_romaji}</p>
+          <p className="average-score">{averageScore}</p>
+          <p className="description">{description}</p>
+        </div>
       </div>
     } else {
       console.log('loading');
       content = <div>Loading...</div>
     }
-    return <div>
+    return <div className="main-container">
       <Link to="/">home</Link>
       <div className="anime-details">
         {content}
       </div>
-      {JSON.stringify(details)}
     </div>
   }
 }
