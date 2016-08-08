@@ -9,12 +9,14 @@ type ALtype = {
     root: string,
     browse: string,
     accessToken: string,
-    anime: string
+    anime: string,
+    genreList: string
   },
   getAnimeSeason: Function,
   getAPIToken: Function,
   getAnimeDetails: Function,
-  getAnimeDetailsSmall: Function
+  getAnimeDetailsSmall: Function,
+  getGenres: Function
 }
 
 const AL: ALtype = {
@@ -22,7 +24,8 @@ const AL: ALtype = {
     root: 'http://anilist.co/api/',
     browse: 'browse/anime',
     accessToken: 'auth/access_token',
-    anime: 'anime/'
+    anime: 'anime/',
+    genreList: 'genre_list'
   },
   getAnimeSeason(year: number, season: string, token: string): Promise<*>{
     let options = {
@@ -69,6 +72,15 @@ const AL: ALtype = {
         }
     }
     let url = `${this.urls.root}${this.urls.anime}${animeId}`;
+    return httpPromise('GET', url, options).then(res => res.data)
+  },
+  getGenres(token: string): Promise<*>{
+    let options = {
+        params: {
+          access_token: token
+        }
+    }
+    let url = `${this.urls.root}${this.urls.genreList}`;
     return httpPromise('GET', url, options).then(res => res.data)
   }
 
