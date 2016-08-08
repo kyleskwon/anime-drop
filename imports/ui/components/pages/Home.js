@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import SeasonSelect from '../SeasonSelect'
-import  { getSeason  } from '../../../actions/animeList'
+import { getSeason  } from '../../../actions/animeList'
 
 class Home extends Component {
   props: {
