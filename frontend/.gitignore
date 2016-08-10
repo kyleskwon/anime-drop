@@ -48,4 +48,3 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
-../npm-debug.log
