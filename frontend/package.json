@@ -7,7 +7,7 @@
     "build": "node ./scripts/build.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "jest",
-    "deploy": "npm run build && surge build --domain animedrop.surge.sh"
+    "deploy": "npm run build && surge build --domain animedrop.com"
   },
   "jest": {
     "automock": false,
