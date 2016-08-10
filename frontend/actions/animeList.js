@@ -23,16 +23,16 @@ export function getSeason(year: number, season: string) {
       return false
 
     if (token)
-      getAnimeSeason(year, season, token.access_token)
+      getAnimeSeason({year, season}, token.access_token)
     else
       dispatch(getAccessToken())
-        .then(newToken => getAnimeSeason(year, season, newToken.access_token))
+        .then(newToken => getAnimeSeason({year, season}, newToken.access_token))
 
-    function getAnimeSeason(year: number, season: string, accessToken: string) {
+    function getAnimeSeason({year: number, season: string}, accessToken: string) {
       dispatch(loadingSeasonPending())
-      return AL.getAnimeSeason(year, season, accessToken)
+      return AL.getAnimeSeason({year, season}, accessToken)
          .then(data => {
-           dispatch(setSeason(year, season, data))
+           dispatch(setSeason({year, season}, data))
            dispatch(loadingSeasonComplete())
          })
          .catch(err => dispatch(serverError(err)))
@@ -40,7 +40,9 @@ export function getSeason(year: number, season: string) {
   }
 }
 
-export function setSeason(year: number, season: string, animes: Array<Object>) {
+export function setSeason(filter:Object, animes: Array<Object>) {
+  let year = filter.year,
+    season = filter.season
   return {
     type: 'SET_SEASON',
     payload: {

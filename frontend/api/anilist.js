@@ -30,13 +30,13 @@ const AL: ALtype = {
     anime: 'anime/',
     genreList: 'genre_list'
   },
-  getAnimeSeason(year: number, season: string, token: string): Promise<*>{
+  getAnimeSeason(filter: Object, token: string): Promise<*>{
     let options = {
       method: 'GET',
       headers,
     }
 
-    let url: string = `${this.urls.root}${this.urls.browse}?year=${year}&season=${season}&access_token=${token}&full_age=full_page=true`;
+    let url: string = `${this.urls.root}${this.urls.browse}?year=${filter.year}&season=${filter.season}&access_token=${token}&full_age=full_page=true`;
 
     return fetch(url, options)
              .then(res => res.json())
