@@ -27,7 +27,7 @@ $ cd frontend
 $ npm start
 ```
 ###2nd Window:
-```bash 
+```bash
 $ cd meteor
 $ npm start
 ```
@@ -43,13 +43,13 @@ $ cd frontend
 $ npm test
 ```
 
-Run frontend tests:
+Run backend tests:
 ```bash
 $ cd meteor
 $ npm test
 ```
 
-If there's any problems, just clearing the cache:
+If there's any problems, just clear the cache:
 
 ```bash
 $ npm test -- --no-cache
