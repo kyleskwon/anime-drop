@@ -29,7 +29,10 @@ if (isInCreateReactAppSource) {
     appHtml: resolveOwn('../template/index.html'),
     appFavicon: resolveOwn('../template/favicon.ico'),
     appPackageJson: resolveOwn('../package.json'),
-    appSrc: resolveOwn('../template/src'),
+    appSrc: resolveOwn('../template/web'),
+    reducers: resolveApp('../template/reducers'),
+    actions: resolveApp('../template/actions'),
+    api: resolveApp('../template/api'),
     appNodeModules: resolveOwn('../node_modules'),
     ownNodeModules: resolveOwn('../node_modules')
   };
@@ -40,7 +43,10 @@ if (isInCreateReactAppSource) {
     appHtml: resolveApp('index.html'),
     appFavicon: resolveApp('favicon.ico'),
     appPackageJson: resolveApp('package.json'),
-    appSrc: resolveApp('src'),
+    appSrc: resolveApp('web'),
+    reducers: resolveApp('reducers'),
+    actions: resolveApp('actions'),
+    api: resolveApp('api'),
     appNodeModules: resolveApp('node_modules'),
     // this is empty with npm3 but node resolution searches higher anyway:
     ownNodeModules: resolveOwn('../node_modules')
@@ -52,7 +58,10 @@ if (isInCreateReactAppSource) {
     appHtml: resolveApp('index.html'),
     appFavicon: resolveApp('favicon.ico'),
     appPackageJson: resolveApp('package.json'),
-    appSrc: resolveApp('src'),
+    appSrc: resolveApp('web'),
+    reducers: resolveApp('reducers'),
+    actions: resolveApp('actions'),
+    api: resolveApp('api'),
     appNodeModules: resolveApp('node_modules'),
     ownNodeModules: resolveApp('node_modules')
   };

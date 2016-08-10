@@ -4,10 +4,10 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute } from 'react-router'
 
 import store, { history } from './store'
-import Home from './ui/components/pages/Home'
-import About from './ui/components/pages/About'
-import Layout from './ui/components/layouts/MainLayout'
-import AnimeDetails from './ui/components/pages/AnimeDetails'
+import Home from './components/pages/Home'
+import About from './components/pages/About'
+import Layout from './components/layouts/MainLayout'
+import AnimeDetails from './components/pages/AnimeDetails'
 
 const Routes = () => (
   <Provider store={store}>

@@ -1,0 +1,3 @@
+rootProject.name = 'animedrop'
+
+include ':app'
