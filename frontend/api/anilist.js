@@ -42,7 +42,7 @@ const AL: ALtype = {
              .then(res => res.json())
              .then(data => data.map((anime) => ({
                ...anime,
-               average_score: parseInt(anime.average_score)/10
+               average_score: parseInt(anime.average_score, 10)/10
              })))
   },
   getAPIToken(): Promise<*> {

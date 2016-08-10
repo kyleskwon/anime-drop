@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import AL from '../../../api/anilist'
 import { getAnimeDetails } from '../../../actions/animeDetails';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -32,7 +31,7 @@ class AnimeDetails extends React.Component {
     let details = animeCache[this.props.params.id];
     if (details) {
       console.log('got details');
-      let averageScore = (Math.round(parseInt(details.average_score)))/10;
+      let averageScore = (Math.round(parseInt(details.average_score, 10)))/10;
       let description = details.description.replace(/<[^>]*>/ig, "");
       content = <div>
         <img src={details.image_url_lge} />
