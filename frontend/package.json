@@ -1,12 +1,14 @@
 {
   "name": "frontend",
+  "homepage": "https://jefflau.github.io/anime-drop",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./scripts/start.js",
     "build": "node ./scripts/build.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "npm run build && cd build && git add --all && git commit -m \"Release at $(date)\" && git push"
   },
   "jest": {
     "automock": false,

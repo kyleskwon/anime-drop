@@ -49,23 +49,20 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'eslint',
-        include: paths.appSrc
+        include: [paths.appSrc, paths.reducers, paths.actions, paths.api]
       }
     ],
     loaders: [
       {
         test: /\.js$/,
-        include: paths.appSrc,
+        include: [paths.appSrc, paths.reducers, paths.actions, paths.api],
         loader: 'babel',
         query: require('./babel.prod')
       },
       {
-        test: /\.css$/,
+        test: /\.styl$/,
         include: [paths.appSrc, paths.appNodeModules],
-        // Disable autoprefixer in css-loader itself:
-        // https://github.com/webpack/css-loader/issues/281
-        // We already have it thanks to postcss.
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
+        loader: 'style!css!stylus'
       },
       {
         test: /\.json$/,

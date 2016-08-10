@@ -24,7 +24,7 @@ type ALtype = {
 
 const AL: ALtype = {
   urls: {
-    root: 'http://anilist.co/api/',
+    root: 'https://anilist.co/api/',
     browse: 'browse/anime',
     accessToken: 'auth/access_token',
     anime: 'anime/',
