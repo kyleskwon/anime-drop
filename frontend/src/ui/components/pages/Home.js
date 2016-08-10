@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import { getSeason  } from '../../../actions/animeList'
+import Asteroid from '../../../api/asteroid';
 
 class Home extends Component {
   props: {
@@ -31,6 +32,7 @@ class Home extends Component {
 
   componentWillMount(){
     this.loadAnime()
+    Asteroid.call('connected').then(data => console.log(data))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,7 +48,6 @@ class Home extends Component {
   }
 
   formatScore (averageScore: number) {
-    console.log(averageScore)
     return averageScore === 0 ? "" : averageScore
   }
 

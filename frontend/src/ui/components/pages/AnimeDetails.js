@@ -13,7 +13,7 @@ class AnimeDetails extends React.Component {
     params: Object
   }
 
-  componentWillMount () {
+  componentWillMount() {
     console.log('component will mount', this.props);
     let animeId = this.props.params.id;
     if(!this.props.animeCache[animeId]) {
