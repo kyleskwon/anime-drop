@@ -3,12 +3,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import SeasonSelect from '../SeasonSelect'
 import { getSeason  } from '../../../actions/animeList'
 
 class Home extends Component {
   props: {
-    serverError: Object,
     seasons: Object,
     getSeason: Function,
     params: Object,
@@ -54,7 +52,6 @@ class Home extends Component {
 
   render(){
     const {
-      serverError,
       seasons,
       params: { year, season },
       config: { currentSeason }

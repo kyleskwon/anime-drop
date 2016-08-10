@@ -9,7 +9,7 @@ import About from './ui/components/pages/About'
 import Layout from './ui/components/layouts/MainLayout'
 import AnimeDetails from './ui/components/pages/AnimeDetails'
 
-const router = (
+const Routes = () => (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Layout}>
@@ -22,4 +22,4 @@ const router = (
   </Provider>
 )
 
-export default router
+export default Routes
