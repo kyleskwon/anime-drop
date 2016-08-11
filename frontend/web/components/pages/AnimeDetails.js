@@ -56,10 +56,5 @@ class AnimeDetails extends React.Component {
 
 const mapStateToProps = ({ animeCache }) => ({ animeCache });
 
-const mapDispatchToProps = dispatch => ({
-  getAnimeDetails(id: string){
-    dispatch(getAnimeDetails(id))
-  }
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnimeDetails)
+export default connect(mapStateToProps, { getAnimeDetails })(AnimeDetails)

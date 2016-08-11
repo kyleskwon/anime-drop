@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import Routes from './router'
 import './main.styl'
 
-render.render(
+render(
   <Routes />,
   document.getElementById('root')
 );
