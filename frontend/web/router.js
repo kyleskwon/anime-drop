@@ -17,6 +17,7 @@ const Routes = () => (
         <Route path="/about" component={About} />
         <Route path="/anime/:id" component={AnimeDetails} />
         <Route path="/:year/:season" component={Home} />
+        <Route path="/:year" component={Home} />
       </Route>
     </Router>
   </Provider>

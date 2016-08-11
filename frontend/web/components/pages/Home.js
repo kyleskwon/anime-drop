@@ -27,6 +27,8 @@ class Home extends Component {
     } else if(Object.keys(seasons).length === 0){
       getSeason(currentSeason.year, currentSeason.season)
     }
+
+
   }
 
   componentWillMount(){
