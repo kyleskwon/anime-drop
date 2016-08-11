@@ -1,4 +1,5 @@
 node_modules/
 .DS_Store
+<<<<<<< HEAD
 .meteor/dev_bundle
 npm-debug.log
