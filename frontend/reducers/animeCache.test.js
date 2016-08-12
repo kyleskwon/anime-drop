@@ -33,4 +33,28 @@ describe('anime cache adds anime to cache', () => {
 
     expect(animeCache(state, action)).toEqual(expectedState);
   })
+
+  it('Returns default state on random action', () => {
+
+    let state = {
+      '456': {
+        title: "bleach",
+        id: "456"
+      }
+    };
+
+    let action = {
+      type: 'RANDOM_ACTION',
+      foo: 'bar'
+    }
+
+    let expectedState = {
+      '456': {
+        title: "bleach",
+        id: "456"
+      }
+    }
+
+    expect(animeCache(state, action)).toEqual(expectedState);
+  })
 })

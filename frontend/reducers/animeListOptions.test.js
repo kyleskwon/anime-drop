@@ -91,4 +91,30 @@ describe('animeListOptions Reducer', () => {
 
     expect(animeListOptions(state, action)).toEqual(expectedState);
   })
+
+  it('returns default state on random action', () => {
+
+    let state = {
+      filters: [],
+      sort: {
+        type: 'score',
+        order: 'asc'
+      }
+    };
+
+    let action = {
+      type: 'RANDOM_ACTION',
+      foo: 'bar'
+    }
+
+    let expectedState = {
+      filters: [],
+      sort: {
+        type: 'score',
+        order: 'asc'
+      }
+    }
+
+    expect(animeListOptions(state, action)).toEqual(expectedState);
+  })
 })

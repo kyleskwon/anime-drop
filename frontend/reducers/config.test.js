@@ -28,4 +28,29 @@ describe('config Reducer', () => {
 
     expect(config(state, action)).toEqual(expectedState);
   });
+
+  it('has initial state', () => {
+
+    let state = {
+      token: null,
+      currentSeason: {
+        year: 2016,
+        season: 'summer'
+      }
+    }
+
+    let action = {
+      type: 'ADD_ANIMELIST_FILTER'
+    }
+
+    let expectedState = {
+      token: null,
+      currentSeason: {
+        year: 2016,
+        season: 'summer'
+      }
+    };
+
+    expect(config(state, action)).toEqual(expectedState);
+  });
 });

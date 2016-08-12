@@ -56,4 +56,56 @@ describe('Seasons Reducer', () => {
 
         expect(seasons(state, action)).toEqual(expectedState);
     })
+
+    it('sets loading to true', () => {
+
+        const state = {
+          loading: false
+        }
+
+        const action = {
+          type: 'LOADING_SEASON_PENDING',
+        }
+
+        const expectedState = {
+          loading: true
+        };
+
+        expect(seasons(state, action)).toEqual(expectedState);
+    })
+
+    it('sets loading to false', () => {
+
+        const state = {
+          loading: true
+        }
+
+        const action = {
+          type: 'LOADING_SEASON_COMPLETE',
+        }
+
+        const expectedState = {
+          loading: false
+        };
+
+        expect(seasons(state, action)).toEqual(expectedState);
+    })
+
+    it('Returns default state on random action', () => {
+
+      const state = {
+        loading: true
+      }
+
+      let action = {
+        type: 'RANDOM_ACTION',
+        foo: 'bar'
+      }
+
+      let expectedState = {
+        loading: true
+      }
+
+      expect(seasons(state, action)).toEqual(expectedState);
+    })
 })
