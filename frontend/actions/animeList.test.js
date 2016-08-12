@@ -21,7 +21,7 @@ describe('Anime list action creators', () => {
 })
 
 describe('Anime list async action creators', () => {
-  it('dispatches the correct actions on successful fetch request', () => {
+  it('dispatches the correct actions on successful getSeason fetch request', () => {
     afterEach(() => {
       nock.cleanAll()
     })
