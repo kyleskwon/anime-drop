@@ -3,11 +3,11 @@ import AL from '../api/anilist'
 import { serverError } from './errors'
 import { getAccessToken } from './accessToken'
 
-const loadingSeasonPending = () => ({
+export const loadingSeasonPending = () => ({
   type: 'LOADING_SEASON_PENDING'
 })
 
-const loadingSeasonComplete = () => ({
+export const loadingSeasonComplete = () => ({
   type: 'LOADING_SEASON_COMPLETE'
 })
 
