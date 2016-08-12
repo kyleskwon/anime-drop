@@ -30,10 +30,6 @@ export function getSeason(year: number, season: string) {
 
     function getAnimeSeason({year: number, season: string}, accessToken: string) {
       dispatch(loadingSeasonPending())
-      AL.getAnimeYear(year, accessToken)
-        .then(data => {
-          console.log(data)
-        })
       return AL.getAnimeSeason({year, season}, accessToken)
          .then(data => {
            dispatch(setSeason({year, season}, data))
