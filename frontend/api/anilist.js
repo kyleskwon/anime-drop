@@ -50,7 +50,7 @@ const AL: ALtype = {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        "grant_type": 'client_credentials',
+        grant_type: 'client_credentials',
         client_id,
         client_secret
       })
