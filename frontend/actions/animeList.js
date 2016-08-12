@@ -45,10 +45,11 @@ export function getSeason(year: number, season: string) {
 }
 
 export function getYear(year: number) {
+  console.log('got year')
   return (dispatch: Function, getState: Function) => {
     const state = getState(),
           token = state.config.token,
-          cache = state.year[year]
+          cache = state.years[year]
 
     console.log('cache', cache)
 
