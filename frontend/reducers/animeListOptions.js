@@ -13,6 +13,9 @@ function reducer(state: Object = { sort: { type: 'score', order: 'desc'}, filter
         sort: action.sort
       }
     case 'ADD_ANIMELIST_FILTER':
+      if(state.filters.includes(action.filter))
+        return state
+
       return {
         ...state,
         filters: [...state.filters, action.filter]

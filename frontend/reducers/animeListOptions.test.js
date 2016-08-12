@@ -43,6 +43,26 @@ describe('animeListOptions Reducer', () => {
     expect(animeListOptions(state, action)).toEqual(expectedState);
   })
 
+  it('does not add duplicate filters', () => {
+
+    let state = {
+      filters: ['shounen'],
+      sort: {}
+    };
+
+    let action = {
+      type: 'ADD_ANIMELIST_FILTER',
+      filter: 'shounen'
+    }
+
+    let expectedState = {
+      filters: ['shounen'],
+      sort: {}
+    }
+
+    expect(animeListOptions(state, action)).toEqual(expectedState);
+  })
+
   it('adds sort object to animeListOptions', () => {
 
     let state = {
