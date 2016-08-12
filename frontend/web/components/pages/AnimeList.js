@@ -3,46 +3,41 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { getSeason  } from '../../../actions/animeList'
+import { getYear } from '../../../actions/animeList'
 
-class Home extends Component {
+class AnimeList extends Component {
   props: {
-    seasons: Object,
-    getSeason: Function,
-    params: Object,
-    config: Object
+    year: Number,
+    getYear: Function,
+    params: Object
   }
 
-  loadAnime(newProps, oldProps){
+  loadAnime(newProps, oldProps) {
     let props = newProps || this.props
     const {
-      getSeason,
-      seasons,
-      params: { year, season },
-      config: { currentSeason }
+      getYear,
+      years,
+      params: {year},
+      config: { currentYear }
     } = props
 
-    if(year && season && !seasons[year + '-' + season]) {
-      getSeason(year, season)
-    } else if(Object.keys(seasons).length === 0){
-      getSeason(currentSeason.year, currentSeason.season)
-    }
-
-
+    getYear(year)
   }
 
-  componentWillMount(){
+
+  componentWillMount() {
     this.loadAnime()
+    console.log('loaded anime')
   }
 
   componentWillReceiveProps(nextProps) {
     if(
-      this.props.seasons.loading !== nextProps.seasons.loading ||
+      this.props.years.loading !== nextProps.years.loading ||
       this.props.config.token !== nextProps.config.token
     ){
       return
     }
-    if(!this.props.seasons.loading){
+    if(!this.props.years.loading){
       this.loadAnime(nextProps)
     }
   }
@@ -51,23 +46,18 @@ class Home extends Component {
     return averageScore === 0 ? "" : averageScore
   }
 
-  render(){
+  render() {
     const {
-      seasons,
-      params: { year, season },
-      config: { currentSeason }
+      years,
+      params: { year },
+      config: { currentYear }
     } = this.props
-    let thisSeason,
+
+    let thisYear = years[year],
         animeList
 
-    if(year && season) {
-      thisSeason = seasons[year + '-' + season]
-    } else {
-      thisSeason = seasons[currentSeason.year + '-' + currentSeason.season]
-    }
-
-    if(thisSeason) {
-      animeList = thisSeason
+    if (thisYear) {
+      animeList = thisYear
         .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
         .map((anime, i) => (
           <li className="anime-item" key={i}>
@@ -81,7 +71,6 @@ class Home extends Component {
           </li>
         ))
     }
-
     return (
       <div className="home">
         <ul className="anime-container">
@@ -92,7 +81,12 @@ class Home extends Component {
   }
 }
 
+const mapStateToProps = ({years , config}) => ({years, config})
 
-const mapStateToProps = ({  seasons, config}) => ({ seasons, config })
+const mapDispatchToProps = dispatch => ({
+  getYear(year) {
+    dispatch(getYear(year))
+  }
+})
 
-export default connect(mapStateToProps, { getSeason })(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(AnimeList)
