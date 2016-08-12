@@ -25,10 +25,10 @@ describe('Access token action creators', () => {
     expect(setAccessToken(token)).toEqual(expectedState);
   })
 
-  it('calls into fetch with the correct params', () => {
+  it('dispatches the correct actions on successful fetch request', () => {
     afterEach(() => {
-        nock.cleanAll()
-      })
+      nock.cleanAll()
+    })
 
     nock('https://anilist.co/api/')
       .post('/auth/access_token', {

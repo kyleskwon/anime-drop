@@ -84,6 +84,6 @@
     "redux-thunk": "^2.1.0"
   },
   "eslintConfig": {
-    "extends": "./config/eslint.js"
+    "extends": "./node_modules/react-scripts/config/eslint.js"
   }
 }

@@ -12,7 +12,6 @@ export const setAnimeDetails = (animeDetails: Object) => ({
 
 export const getAnimeDetails = (id: string) => (dispatch: dispatch, getState: getState) => {
   const token = getState().config.token
-  console.log(token)
   if (token) {
     return getAnimeDetailsAPI(id, token.access_token)
   }
