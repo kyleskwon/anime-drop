@@ -1,6 +1,6 @@
-jest.unmock('./configReducer'); // unmock to use the actual implementation of sum
+jest.unmock('./config'); // unmock to use the actual implementation of sum
 
-import configReducer from './configReducer';
+import config from './config';
 
 describe('config Reducer', () => {
   it('adds an api token', () => {
@@ -26,6 +26,6 @@ describe('config Reducer', () => {
       }
     };
 
-    expect(configReducer(state, action)).toEqual(expectedState);
+    expect(config(state, action)).toEqual(expectedState);
   });
 });

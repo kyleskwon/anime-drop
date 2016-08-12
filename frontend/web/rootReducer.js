@@ -1,9 +1,10 @@
 // @flow
 import { combineReducers } from 'redux';
-import serverError from '../reducers/serverErrorReducer';
-import config from '../reducers//configReducer';
-import seasons from '../reducers//seasonsReducer';
-import animeCache from '../reducers/animeCacheReducer';
+import serverError from '../reducers/serverError';
+import config from '../reducers/config';
+import seasons from '../reducers/seasons';
+import animeCache from '../reducers/animeCache';
+import animeListOptions from '../reducers/animeListOptions';
 import { routerReducer } from 'react-router-redux';
 import {reducer as formReducer} from 'redux-form';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   config,
   seasons,
   animeCache,
+  animeListOptions,
   routing: routerReducer,
   form: formReducer
 })

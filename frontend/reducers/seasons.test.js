@@ -1,6 +1,6 @@
-jest.unmock('./seasonsReducer')
+jest.unmock('./seasons')
 
-import seasonsReducer from './seasonsReducer'
+import seasons from './seasons'
 
 describe('Seasons Reducer', () => {
     it('Set a season to state with no current seasons', () => {
@@ -54,6 +54,6 @@ describe('Seasons Reducer', () => {
             }]
         };
 
-        expect(seasonsReducer(state, action)).toEqual(expectedState);
+        expect(seasons(state, action)).toEqual(expectedState);
     })
 })

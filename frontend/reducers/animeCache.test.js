@@ -1,6 +1,6 @@
-jest.unmock('./animeCacheReducer')
+jest.unmock('./animeCache')
 
-import animeCacheReducer from './animeCacheReducer'
+import animeCache from './animeCache'
 
 describe('anime cache adds anime to cache', () => {
   it('adds 1 + 2 to equal 3', () => {
@@ -31,6 +31,6 @@ describe('anime cache adds anime to cache', () => {
       }
     }
 
-    expect(animeCacheReducer(state, action)).toEqual(expectedState);
+    expect(animeCache(state, action)).toEqual(expectedState);
   })
 })

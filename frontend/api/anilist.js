@@ -1,5 +1,5 @@
 // @flow
-import 'whatwg-fetch'
+import 'fetch-everywhere'
 
 const client_id = 'tyranel-wi4tj'
 const client_secret = 'D1HM7LWb9tseYL1f45dsTuNQ'
