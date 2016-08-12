@@ -17,13 +17,11 @@ export function getSeason(year: number, season: string) {
           token = state.config.token,
           cache = state.seasons[year + "-" + season]
 
-    console.log('cache', cache)
-
     if (cache)
       return false
 
     if (token)
-      getAnimeSeason({year, season}, token.access_token)
+      return getAnimeSeason({year, season}, token.access_token)
     else
       dispatch(getAccessToken())
         .then(newToken => getAnimeSeason({year, season}, newToken.access_token))
@@ -41,13 +39,10 @@ export function getSeason(year: number, season: string) {
 }
 
 export function getYear(year: number) {
-  console.log('got year')
   return (dispatch: Function, getState: Function) => {
     const state = getState(),
           token = state.config.token,
           cache = state.years[year]
-
-    console.log('cache', cache)
 
     if (cache)
       return false
