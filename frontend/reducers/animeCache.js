@@ -7,11 +7,10 @@ type action = {
 function reducer(state: Object = {}, action: action){
   switch(action.type) {
     case 'SET_ANIME_DETAILS':
-      let newState = {
-        ...state
+      return {
+        ...state,
+        [action.animeDetails.id]: action.animeDetails
       };
-      newState[action.animeDetails.id] = action.animeDetails;
-      return newState;
     default:
       return state;
   }

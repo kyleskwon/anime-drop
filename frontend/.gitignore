@@ -11,6 +11,9 @@ npm-debug.log
 #
 .DS_Store
 
+# Jest
+coverage
+
 # Xcode
 #
 build/

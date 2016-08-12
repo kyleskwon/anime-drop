@@ -95,10 +95,4 @@ class Home extends Component {
 
 const mapStateToProps = ({  seasons, config}) => ({ seasons, config })
 
-const mapDispatchToProps = dispatch => ({
-  getSeason(year, season){
-    dispatch(getSeason(year, season))
-  }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, { getSeason })(Home)

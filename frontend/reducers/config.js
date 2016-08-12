@@ -2,6 +2,7 @@
 type config = {
   token: ?string
 }
+
 const initialState = {
   token: null,
   currentSeason: {
