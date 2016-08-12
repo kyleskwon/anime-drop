@@ -11,6 +11,14 @@ export const loadingSeasonComplete = () => ({
   type: 'LOADING_SEASON_COMPLETE'
 })
 
+export const LoadingYearComplete = () => ({
+  type: 'LOADING_YEAR_COMPLETE'
+})
+
+export const LoadingYearPending = () => ({
+  type: 'LOADING_YEAR_PENDING'
+})
+
 export function getSeason(year: number, season: string) {
   return (dispatch: Function, getState: Function) => {
     const state = getState(),
@@ -59,11 +67,11 @@ export function getYear(year: number) {
         .then(newToken => getAnimeYear(year, newToken.access_token))
 
     function getAnimeYear(year: number, accessToken: string) {
-      dispatch(loadingSeasonPending())
+      dispatch(loadingYearPending())
       return AL.getAnimeYear(year, accessToken)
          .then(data => {
            dispatch(setYear(year, data))
-           dispatch(loadingSeasonComplete())
+           dispatch(loadingYearComplete())
          })
          .catch(err => dispatch(serverError(err)))
     }
