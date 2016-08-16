@@ -11,11 +11,11 @@ export const loadingSeasonComplete = () => ({
   type: 'LOADING_SEASON_COMPLETE'
 })
 
-export const LoadingYearComplete = () => ({
+export const loadingYearComplete = () => ({
   type: 'LOADING_YEAR_COMPLETE'
 })
 
-export const LoadingYearPending = () => ({
+export const loadingYearPending = () => ({
   type: 'LOADING_YEAR_PENDING'
 })
 
@@ -78,7 +78,7 @@ export function getYear(year: number) {
   }
 }
 
-export function setSeason({year, season}, animes: Array<Object>) {
+export function setSeason({year, season}: {year: number, season: string}, animes: Array<Object>) {
   return {
     type: 'SET_SEASON',
     payload: {
@@ -89,7 +89,7 @@ export function setSeason({year, season}, animes: Array<Object>) {
   }
 }
 
-export function setYear(year, animes: Array<Object>) {
+export function setYear(year: number, animes: Array<Object>) {
   return {
     type: 'SET_YEAR',
     payload: {
