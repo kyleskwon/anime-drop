@@ -7,9 +7,10 @@ import { getYear } from '../../../actions/animeList'
 
 class AnimeList extends Component {
   props: {
-    year: Number,
+    years: Object,
     getYear: Function,
-    params: Object
+    params: Object,
+    config: Object
   }
 
   loadAnime(newProps, oldProps) {

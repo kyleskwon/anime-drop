@@ -19,6 +19,7 @@ type ALtype = {
   getAPIToken: Function,
   getAnimeDetails: Function,
   getAnimeDetailsSmall: Function,
+  getAnimeYear: Function,
   getGenres: Function
 }
 
