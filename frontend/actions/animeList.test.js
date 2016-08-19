@@ -22,19 +22,24 @@ describe('Anime list action creators', () => {
 
 describe('Anime list async action creators', () => {
   it('dispatches the correct actions on successful getSeason fetch request', () => {
-    afterEach(() => {
-      nock.cleanAll()
-    })
+    // afterEach(() => {
+    //   nock.cleanAll()
+    // })
 
-    nock('https://anilist.co/api')
-      .get('/browse/anime')
-      .query({
-        year: 2016,
-        season: 'summer',
-        access_token: 'wtw45CmyEuh4P621IDVxWkgVr5QwTg3wXEc4Z7Cv',
-        full_page: true
-      })
-      .reply(200, [{name: 'naruto', average_score: 79}, {name: 'bleach', average_score: 98}])
+    // nock('https://anilist.co/api')
+    //   .get('/browse/anime')
+    //   .query({
+    //     year: 2016,
+    //     season: 'summer',
+    //     access_token: 'wtw45CmyEuh4P621IDVxWkgVr5QwTg3wXEc4Z7Cv',
+    //     full_page: true
+    //   })
+    //   .reply(200, [{name: 'naruto', average_score: 79}, {name: 'bleach', average_score: 98}])
+
+    fetch.mockResponse(JSON.stringify([
+      {name: 'naruto', average_score: 79},
+      {name: 'bleach', average_score: 98}
+    ]))
 
     const expectedActions = [
       {
@@ -43,7 +48,10 @@ describe('Anime list async action creators', () => {
       {
         type: 'SET_SEASON',
         payload: {
-          animes: [{name: 'naruto', average_score: 7.9}, {name: 'bleach', average_score: 9.8}],
+          animes: [
+            {name: 'naruto', average_score: 7.9},
+            {name: 'bleach', average_score: 9.8}
+          ],
           year: 2016,
           season: 'summer'
         }

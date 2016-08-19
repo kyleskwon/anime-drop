@@ -1,8 +1,5 @@
-jest.unmock('./animeDetails')
-
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import nock from 'nock'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -24,16 +21,8 @@ describe('Anime Details action creators', () => {
   })
 
   it('dispatches the correct actions on successful fetch request', () => {
-    afterEach(() => {
-      nock.cleanAll()
-    })
 
-    nock('https://anilist.co')
-      .get('/api/anime/21049/page')
-      .query({
-        access_token: 'wtw45CmyEuh4P621IDVxWkgVr5QwTg3wXEc4Z7Cv'
-      })
-      .reply(200, { name: 'naruto' })
+    fetch.mockResponse(JSON.stringify({ name: 'naruto' }))
 
     const expectedActions = [
       { type: 'SET_ANIME_DETAILS', animeDetails: { name: 'naruto'}}

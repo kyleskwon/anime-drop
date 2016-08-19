@@ -14,7 +14,10 @@
   },
   "jest": {
     "automock": false,
-    "testRegex": "\\.test\\.js$"
+    "testRegex": "\\.test\\.js$",
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   },
   "devDependencies": {
     "autoprefixer": "6.3.7",
@@ -60,6 +63,7 @@
     "react-addons-test-utils": "^15.3.0",
     "redux-mock-store": "^1.1.2",
     "rimraf": "2.5.4",
+    "jest-fetch-mock": "1.0.1",
     "style-loader": "0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.2.0",
@@ -81,7 +85,8 @@
     "redux": "^3.5.2",
     "redux-form": "^5.3.1",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
