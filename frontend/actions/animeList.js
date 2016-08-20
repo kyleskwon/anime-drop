@@ -3,20 +3,33 @@ import AL from '../api/anilist'
 import { serverError } from './errors'
 import { getAccessToken } from './accessToken'
 
-export const loadingSeasonPending = () => ({
-  type: 'LOADING_SEASON_PENDING'
+const fetchAnimeListRequest = () => ({
+  type: 'FETCH_ANIMELIST_REQUEST'
 })
 
-export const loadingSeasonComplete = () => ({
-  type: 'LOADING_SEASON_COMPLETE'
+const fetchAnimeListComplete = () => ({
+  type: 'FETCH_ANIMELIST_COMPLETE'
 })
 
-export const loadingYearComplete = () => ({
-  type: 'LOADING_YEAR_COMPLETE'
+const fetchAnimeListFailure = () => ({
+  type: 'FETCH_ANIMELIST_FAILURE'
 })
 
-export const loadingYearPending = () => ({
-  type: 'LOADING_YEAR_PENDING'
+const setSeason = ({year, season}: {year: number, season: string}, animes: Array<Object>) => ({
+  type: 'SET_SEASON',
+  payload: {
+    year,
+    season,
+    animes
+  }
+})
+
+const setYear = (year: number, animes: Array<Object>) => ({
+  type: 'SET_YEAR',
+  payload: {
+    year,
+    animes
+  }
 })
 
 export function getSeason(year: number, season: string) {
@@ -31,17 +44,20 @@ export function getSeason(year: number, season: string) {
     if (token)
       return getAnimeSeason({year, season}, token.access_token)
     else
-      dispatch(getAccessToken())
+      return dispatch(getAccessToken())
         .then(newToken => getAnimeSeason({year, season}, newToken.access_token))
 
     function getAnimeSeason({year: number, season: string}, accessToken: string) {
-      dispatch(loadingSeasonPending())
+      dispatch(fetchAnimeListRequest())
       return AL.getAnimeSeason({year, season}, accessToken)
          .then(data => {
            dispatch(setSeason({year, season}, data))
-           dispatch(loadingSeasonComplete())
+           dispatch(fetchAnimeListComplete())
          })
-         .catch(err => dispatch(serverError(err)))
+         .catch(err => {
+           dispatch(serverError(err))
+           dispatch(fetchAnimeListFailure())
+         })
     }
   }
 }
@@ -56,40 +72,22 @@ export function getYear(year: number) {
       return false
 
     if (token)
-      getAnimeYear(year, token.access_token)
+      return getAnimeYear(year, token.access_token)
     else
-      dispatch(getAccessToken())
+      return dispatch(getAccessToken())
         .then(newToken => getAnimeYear(year, newToken.access_token))
 
     function getAnimeYear(year: number, accessToken: string) {
-      dispatch(loadingYearPending())
+      dispatch(fetchAnimeListRequest())
       return AL.getAnimeYear(year, accessToken)
          .then(data => {
            dispatch(setYear(year, data))
-           dispatch(loadingYearComplete())
+           dispatch(fetchAnimeListComplete())
          })
-         .catch(err => dispatch(serverError(err)))
-    }
-  }
-}
-
-export function setSeason({year, season}: {year: number, season: string}, animes: Array<Object>) {
-  return {
-    type: 'SET_SEASON',
-    payload: {
-      year,
-      season,
-      animes
-    }
-  }
-}
-
-export function setYear(year: number, animes: Array<Object>) {
-  return {
-    type: 'SET_YEAR',
-    payload: {
-      year,
-      animes
+         .catch(err => {
+           dispatch(serverError(err))
+           dispatch(fetchAnimeListFailure())
+         })
     }
   }
 }

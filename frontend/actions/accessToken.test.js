@@ -31,7 +31,7 @@ describe('Access token action creators', () => {
     ]
     const store = mockStore({ config: {token: "" } })
 
-    return store.dispatch(getAccessToken())
+    store.dispatch(getAccessToken())
       .then(() => { // return of async actions
         expect(store.getActions()).toEqual(expectedActions)
       })
