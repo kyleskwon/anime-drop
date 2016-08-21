@@ -8,8 +8,8 @@ import Home from './components/pages/Home'
 import About from './components/pages/About'
 import Layout from './components/layouts/MainLayout'
 import AnimeDetails from './components/pages/AnimeDetails'
-import AnimeByYear from './components/AnimeByYear'
-import AnimeBySeason from './components/AnimeBySeason'
+import AnimeByYear from './components/pages/AnimeByYear'
+import AnimeBySeason from './components/pages/AnimeBySeason'
 
 const Routes = () => (
   <Provider store={store}>

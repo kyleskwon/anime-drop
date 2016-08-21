@@ -31,7 +31,7 @@ const AL: ALtype = {
     anime: 'anime/',
     genreList: 'genre_list'
   },
-  getAnimeSeason({year, season}, token: string): Promise<*>{
+  getAnimeSeason(year: number, season: string, token: string): Promise<*>{
     let options = {
       method: 'GET',
       headers,
