@@ -70,7 +70,7 @@ export function getYear(year: number) {
 
     if (cache)
       return false
-
+      
     if (token)
       return getAnimeYear(year, token.access_token)
     else
