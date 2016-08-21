@@ -61,7 +61,10 @@ class AnimeByYear extends Component {
     if (thisYear) {
       animeList = thisYear
     }
-    return <AnimeList animes={animeList}/>
+    console.log(animeList)
+    return (
+      <AnimeList animes={animeList}/>
+    )
   }
 }
 

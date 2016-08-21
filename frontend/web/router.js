@@ -18,7 +18,7 @@ const Routes = () => (
         <IndexRoute component={Home} />
         <Route path="/about" component={About} />
         <Route path="/anime/:id" component={AnimeDetails} />
-        <Route path="/:year/:season" component={Home} />
+        <Route path="/:year/:season" component={AnimeBySeason} />
         <Route path="/:year" component={AnimeByYear} />
       </Route>
     </Router>
