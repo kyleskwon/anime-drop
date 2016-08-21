@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import { getYear } from '../../actions/animeList'
+import AnimeList from './pages/AnimeList'
 
 class AnimeByYear extends Component {
   props: {
@@ -59,26 +60,8 @@ class AnimeByYear extends Component {
 
     if (thisYear) {
       animeList = thisYear
-        .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
-        .map((anime, i) => (
-          <li className="anime-item" key={i}>
-            <Link to={`/anime/${anime.id}`}>
-              <img src={anime.image_url_lge} />
-              <div className="overlay">
-                <h3><span>{anime.title_romaji}</span></h3>
-                {anime.average_score ? <div className="score">{this.formatScore(anime.average_score)}</div> : null}
-              </div>
-            </Link>
-          </li>
-        ))
     }
-    return (
-      <div className="home">
-        <ul className="anime-container">
-          {animeList}
-        </ul>
-      </div>
-    )
+    return <AnimeList animes={animeList}/>
   }
 }
 

@@ -4,26 +4,7 @@ import { Link } from 'react-router'
 
 class AnimeList extends Component {
   props: {
-    animes: Array<Object>,
-    params: Object,
-    config: Object
-  }
-
-  loadAnime(newProps, oldProps) {
-    let props = newProps || this.props
-    const {
-      animes
-    } = props
-  }
-
-
-  componentWillMount() {
-    this.loadAnime()
-    console.log('loaded anime')
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.loadAnime(nextProps)
+    animes: Array<Object>
   }
 
   formatScore (averageScore: number) {
@@ -57,3 +38,5 @@ class AnimeList extends Component {
     )
   }
 }
+
+export default AnimeList
