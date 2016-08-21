@@ -8,7 +8,8 @@ import Home from './components/pages/Home'
 import About from './components/pages/About'
 import Layout from './components/layouts/MainLayout'
 import AnimeDetails from './components/pages/AnimeDetails'
-import AnimeList from './components/pages/AnimeList'
+import AnimeByYear from './components/AnimeByYear'
+import AnimeBySeason from './components/AnimeBySeason'
 
 const Routes = () => (
   <Provider store={store}>
@@ -18,7 +19,7 @@ const Routes = () => (
         <Route path="/about" component={About} />
         <Route path="/anime/:id" component={AnimeDetails} />
         <Route path="/:year/:season" component={Home} />
-        <Route path="/:year" component={AnimeList} />
+        <Route path="/:year" component={AnimeByYear} />
       </Route>
     </Router>
   </Provider>

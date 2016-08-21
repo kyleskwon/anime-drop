@@ -1,10 +1,14 @@
 // @flow
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-class AnimeList extends Component {
+import { getYear } from '../../actions/animeList'
+
+class AnimeByYear extends Component {
   props: {
-    animes: Array<Object>,
+    years: Object,
+    getYear: Function,
     params: Object,
     config: Object
   }
@@ -12,8 +16,13 @@ class AnimeList extends Component {
   loadAnime(newProps, oldProps) {
     let props = newProps || this.props
     const {
-      animes
+      getYear,
+      years,
+      params: {year},
+      config: { currentYear }
     } = props
+
+    getYear(year)
   }
 
 
@@ -23,7 +32,15 @@ class AnimeList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.loadAnime(nextProps)
+    if(
+      this.props.years.loading !== nextProps.years.loading ||
+      this.props.config.token !== nextProps.config.token
+    ){
+      return
+    }
+    if(!this.props.years.loading){
+      this.loadAnime(nextProps)
+    }
   }
 
   formatScore (averageScore: number) {
@@ -32,10 +49,16 @@ class AnimeList extends Component {
 
   render() {
     const {
-      animes
+      years,
+      params: { year },
+      config: { currentYear }
     } = this.props
 
-    let animeList = animes
+    let thisYear = years[year],
+        animeList
+
+    if (thisYear) {
+      animeList = thisYear
         .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
         .map((anime, i) => (
           <li className="anime-item" key={i}>
@@ -48,6 +71,7 @@ class AnimeList extends Component {
             </Link>
           </li>
         ))
+    }
     return (
       <div className="home">
         <ul className="anime-container">
@@ -57,3 +81,13 @@ class AnimeList extends Component {
     )
   }
 }
+
+const mapStateToProps = ({years , config}) => ({years, config})
+
+const mapDispatchToProps = dispatch => ({
+  getYear(year) {
+    dispatch(getYear(year))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AnimeByYear)
