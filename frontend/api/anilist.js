@@ -23,6 +23,11 @@ type ALtype = {
   getGenres: Function
 }
 
+const encodeParams = (options) =>
+  Object.keys(options)
+    .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(options[k]))
+    .join('&')
+
 const AL: ALtype = {
   urls: {
     root: 'https://anilist.co/api/',
@@ -31,13 +36,13 @@ const AL: ALtype = {
     anime: 'anime/',
     genreList: 'genre_list'
   },
-  getAnimeSeason(year: number, season: string, token: string): Promise<*>{
+  getAnimeSeason(params: {}, token: string): Promise<*>{
     let options = {
       method: 'GET',
       headers,
     }
 
-    let url: string = `${this.urls.root}${this.urls.browse}?year=${year}&season=${season}&access_token=${token}&full_page=true`;
+    let url: string = `${this.urls.root}${this.urls.browse}?${encodeParams(params)}&access_token=${token}&full_page=true`;
 
     return fetch(url, options)
              .then(res => res.json())
@@ -104,7 +109,7 @@ const AL: ALtype = {
       method: 'GET',
       headers
     }
-    let url = `${this.urls.root}${this.urls.genreList}&access_token=${token}`;
+    let url = `${this.urls.root}${this.urls.genreList}?&access_token=${token}`;
     return fetch(url, options).then(res => res.json())
   }
 

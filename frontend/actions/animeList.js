@@ -57,7 +57,7 @@ export function getSeason(year: number, season: string) {
 
     function getAnimeSeason(year: number, season: string, accessToken: string) {
       dispatch(fetchAnimeListRequest())
-      return AL.getAnimeSeason(year, season, accessToken)
+      return AL.getAnimeSeason({ year, season }, accessToken)
          .then(data => {
            dispatch(setSeason(year, season, data))
            dispatch(fetchAnimeListComplete())
@@ -96,6 +96,35 @@ export function getYear(year: number) {
            dispatch(serverError(err))
            dispatch(fetchAnimeListFailure())
          })
+    }
+  }
+}
+
+export function getGenres() {
+  return (dispatch: Function, getState: Function) => {
+
+    const state = getState(),
+          token = state.config.token,
+          cache = state.genres
+
+    if (cache.length > 0)
+      return false
+
+    if (token)
+      return getGenres(token.access_token)
+    else
+      return dispatch(getAccessToken())
+        .then(newToken => getGenres(newToken.access_token))
+
+    function getGenres(accessToken){
+      dispatch({ type: 'REQUEST_GENRES'})
+      return AL.getGenres(accessToken)
+        .then(genres => {
+          dispatch({
+            type: 'RECEIVE_GENRES',
+            genres
+          })
+        })
     }
   }
 }

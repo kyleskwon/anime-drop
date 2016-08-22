@@ -3,13 +3,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { getAnimeList  } from '../../actions/animeList'
+import { getAnimeList, getGenres } from '../../actions/animeList'
 import AnimeList from './AnimeList'
 
 class AnimeListContainer extends Component {
   props: {
     getAnimeList: Function,
+    getGenres: Function,
     animes: Object,
+    genres: Array<Object>,
     year: number,
     season: string,
     params: Object,
@@ -39,14 +41,21 @@ class AnimeListContainer extends Component {
 
     if(season && this.seasonInCache(animes, year, season)) {
       getAnimeList(year, season)
-    } else if (year && this.seasonInCache(animes, year)) {
+    } else if (year && !season && this.seasonInCache(animes, year)) {
       getAnimeList(year)
     }
 
   }
 
+  loadGenres() {
+    if(this.props.genres.length < 1) {
+      this.props.getGenres()
+    }
+  }
+
   componentWillMount(){
     this.loadAnime()
+    this.loadGenres()
   }
 
   componentWillReceiveProps(nextProps: Object) {
@@ -70,7 +79,8 @@ class AnimeListContainer extends Component {
       animes,
       config: { currentSeason },
       season,
-      year
+      year,
+      genres
     } = this.props
     let animeList;
 
@@ -80,8 +90,13 @@ class AnimeListContainer extends Component {
       animeList = animes[year]
     }
 
+    console.log(genres)
+
     return (
       <div className="home">
+        <ul className="genres">
+          {genres.map(genre => <li>{genre.genre}</li>)}
+        </ul>
         <ul className="anime-container">
           <AnimeList animes={animeList} />
         </ul>
@@ -90,4 +105,4 @@ class AnimeListContainer extends Component {
   }
 }
 
-export default connect(({ config }) => ({ config }), { getAnimeList })(AnimeListContainer)
+export default connect(({ config, genres }) => ({ config, genres }), { getAnimeList, getGenres })(AnimeListContainer)
