@@ -11,12 +11,11 @@ class AnimeByYear extends Component {
   }
 
   render(){
-    const { years } = this.props
-    
-    if(this.props.year){
-      var { year } = this.props
-    } else {
-      var { params: { year }} = this.props
+    let { years, year } = this.props
+
+    if(this.props.params) {
+      let { params } = this.props
+      year = params.year
     }
 
     return (
