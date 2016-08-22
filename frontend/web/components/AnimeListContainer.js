@@ -90,12 +90,10 @@ class AnimeListContainer extends Component {
       animeList = animes[year]
     }
 
-    console.log(genres)
-
     return (
       <div className="home">
         <ul className="genres">
-          {genres.map(genre => <li>{genre.genre}</li>)}
+          {genres.map(genre => <li key={genre.id}>{genre.genre}</li>)}
         </ul>
         <ul className="anime-container">
           <AnimeList animes={animeList} />
