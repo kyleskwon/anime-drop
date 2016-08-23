@@ -54,3 +54,7 @@ If there's any problems, just clear the cache:
 ```bash
 $ npm test -- --no-cache
 ```
+
+##Todo
+[ ] - Genres to filter list
+[ ] - Hook up Genres to Anilist API
