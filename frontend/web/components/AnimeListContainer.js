@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { getAnimeList, getGenres } from '../../actions/animeList'
+import { getAnimeList } from '../../actions/animeList'
 import AnimeList from './AnimeList'
+import Genres from './Genres'
 
 class AnimeListContainer extends Component {
   props: {
@@ -47,15 +48,8 @@ class AnimeListContainer extends Component {
 
   }
 
-  loadGenres() {
-    if(this.props.genres.length < 1) {
-      this.props.getGenres()
-    }
-  }
-
   componentWillMount(){
     this.loadAnime()
-    this.loadGenres()
   }
 
   componentWillReceiveProps(nextProps: Object) {
@@ -79,8 +73,7 @@ class AnimeListContainer extends Component {
       animes,
       config: { currentSeason },
       season,
-      year,
-      genres
+      year
     } = this.props
     let animeList;
 
@@ -92,15 +85,11 @@ class AnimeListContainer extends Component {
 
     return (
       <div className="home">
-        <ul className="genres">
-          {genres.map(genre => <li key={genre.id}>{genre.genre}</li>)}
-        </ul>
-        <ul className="anime-container">
-          <AnimeList animes={animeList} />
-        </ul>
+        <Genres />
+        <AnimeList animes={animeList} />
       </div>
     )
   }
 }
 
-export default connect(({ config, genres }) => ({ config, genres }), { getAnimeList, getGenres })(AnimeListContainer)
+export default connect(({ config }) => ({ config }), { getAnimeList })(AnimeListContainer)

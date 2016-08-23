@@ -35,11 +35,9 @@ class AnimeList extends Component {
     }
 
     return (
-      <div className="home">
-        <ul className="anime-container">
-          {animeList}
-        </ul>
-      </div>
+      <ul className="anime-container">
+        {animeList}
+      </ul>
     )
   }
 }
