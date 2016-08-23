@@ -16,13 +16,12 @@ class Genres extends React.Component {
     this.loadGenres()
   }
 
-  updateRoute(genre){
-    const { router, routing } = this.props
-    let genres
-    console.log(genre.genre)
-    const currentGenres = routing.locationBeforeTransitions.query.genres;
-    let genresArr = currentGenres ? currentGenres.split(',') : []
-    console.log(genresArr)
+  updateGenres(genre){
+    let { router, routing } = this.props,
+        currentGenres = routing.locationBeforeTransitions.query.genres,
+        genres,
+        genresArr = currentGenres ? currentGenres.split(',') : []
+
     if(genresArr.includes(genre.genre)) {
       genresArr = genresArr.filter(g => g !== genre.genre)
     } else {
@@ -46,7 +45,7 @@ class Genres extends React.Component {
     const { genres } = this.props
     return (
       <ul className="genres">
-        {genres.map(genre => <li onClick={this.updateRoute.bind(this, genre)} key={genre.id}>{genre.genre}</li>)}
+        {genres.map(genre => <li onClick={this.updateGenres.bind(this, genre)} key={genre.id}>{genre.genre}</li>)}
       </ul>
     )
   }
