@@ -58,14 +58,14 @@ export function getSeason(year: number, season: string) {
     function getAnimeSeason(year: number, season: string, accessToken: string) {
       dispatch(fetchAnimeListRequest())
       return AL.getAnimeSeason({ year, season }, accessToken)
-         .then(data => {
-           dispatch(setSeason(year, season, data))
-           dispatch(fetchAnimeListComplete())
-         })
-         .catch(err => {
-           dispatch(serverError(err))
-           dispatch(fetchAnimeListFailure())
-         })
+        .then(data => {
+          dispatch(setSeason(year, season, data))
+          dispatch(fetchAnimeListComplete())
+        })
+        .catch(err => {
+          dispatch(serverError(err))
+          dispatch(fetchAnimeListFailure())
+        })
     }
   }
 }

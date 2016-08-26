@@ -7,6 +7,12 @@ import { getAnimeList } from '../../actions/animeList'
 import AnimeList from './AnimeList'
 import Genres from './Genres'
 
+const filterAnimeList = (animeList, filters) =>
+  animeList.filter(anime => {
+    return filters.every(filter => anime.genres.find(genre => filter === genre))
+    // return anime.genres.find(genre => filters.find(filter => filter === genre))
+  })
+
 class AnimeListContainer extends Component {
   props: {
     getAnimeList: Function,
@@ -15,6 +21,7 @@ class AnimeListContainer extends Component {
     genres: Array<Object>,
     year: number,
     season: string,
+    routing: Object,
     params: Object,
     config: Object
   }
@@ -37,6 +44,7 @@ class AnimeListContainer extends Component {
       animes,
       year,
       season,
+      routing,
       config: { currentSeason }
     } = props
 
@@ -73,14 +81,22 @@ class AnimeListContainer extends Component {
       animes,
       config: { currentSeason },
       season,
-      year
+      year,
+      routing
     } = this.props
-    let animeList;
+    let animeList,
+        genres = routing.locationBeforeTransitions.query.genres,
+        arrGenres
 
     if(season && year) {
       animeList = animes[year + '-' + season]
     } else if(year) {
       animeList = animes[year]
+    }
+
+    if(genres && animeList) {
+      arrGenres = genres.split(',')
+      animeList = filterAnimeList(animeList, arrGenres)
     }
 
     return (
@@ -92,4 +108,4 @@ class AnimeListContainer extends Component {
   }
 }
 
-export default connect(({ config }) => ({ config }), { getAnimeList })(AnimeListContainer)
+export default connect(({ config, routing }) => ({ config, routing }), { getAnimeList })(AnimeListContainer)

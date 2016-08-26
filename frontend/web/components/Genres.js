@@ -4,6 +4,13 @@ import { connect } from 'react-redux'
 import { getGenres } from '../../actions/animeList'
 import { withRouter } from 'react-router'
 
+const Genre = ({ handleClick, genre, genresArr}) => {
+  let currentFilter = genresArr.includes(genre.genre) ? 'current genre' : 'genre'
+  return (
+    <li className={currentFilter} onClick={handleClick}>{genre.genre}</li>
+  )
+}
+
 class Genres extends React.Component {
 
   loadGenres() {
@@ -19,6 +26,7 @@ class Genres extends React.Component {
   updateGenres(genre){
     let { router, routing } = this.props,
         currentGenres = routing.locationBeforeTransitions.query.genres,
+        currentPath = routing.locationBeforeTransitions.pathname,
         genres,
         genresArr = currentGenres ? currentGenres.split(',') : []
 
@@ -30,11 +38,14 @@ class Genres extends React.Component {
 
     if(genresArr.length > 0 ) {
       genres = genresArr.join(',')
+      console.log(router)
       router.replace({
+        pathname: currentPath,
         query: { genres }
       })
     } else {
       router.replace({
+        pathname: currentPath,
         query: {}
       })
     }
@@ -42,10 +53,12 @@ class Genres extends React.Component {
   }
 
   render() {
-    const { genres } = this.props
+    const { genres, routing } = this.props,
+          currentGenres = routing.locationBeforeTransitions.query.genres,
+          genresArr = currentGenres ? currentGenres.split(',') : []
     return (
       <ul className="genres">
-        {genres.map(genre => <li onClick={this.updateGenres.bind(this, genre)} key={genre.id}>{genre.genre}</li>)}
+        {genres.map(genre => <Genre genresArr={genresArr} key={genre.id} handleClick={this.updateGenres.bind(this, genre)} genre={genre} />)}
       </ul>
     )
   }

@@ -12,12 +12,16 @@ const initialState = () => {
   switch(true){
     case month >= 0:
       season = 'winter'
+      break;
     case month >= 3:
       season = 'spring'
+      break;
     case month >= 6:
       season = 'summer'
+      break;
     case month >= 9:
-      season = 'autumn'
+      season = 'fall'
+      break;
   }
 
   return {
