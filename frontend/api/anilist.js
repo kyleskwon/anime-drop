@@ -51,12 +51,11 @@ const AL: ALtype = {
                average_score: parseInt(anime.average_score, 10)/10
              })))
   },
-  getAnimeYear(year, token: string) {
+  getAnimeYear(year, seasons, token: string) {
     let options = {
       method: 'GET',
       headers
     }
-    let seasons = ['winter', 'spring', 'summer', 'fall'];
 
     let promises = seasons.map((season) => {
       let url: string = `${this.urls.root}${this.urls.browse}?year=${year}&season=${season}&access_token=${token}&full_page=true`;
@@ -69,9 +68,7 @@ const AL: ALtype = {
                })))
     })
 
-    return Promise.all(promises).then(([v1, v2, v3, v4]) => {
-      return [...v1, ...v2, ...v3, ...v4]
-    })
+    return Promise.all(promises).then(data => data)
   },
 
   getAPIToken(): Promise<*> {

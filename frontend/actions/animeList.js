@@ -73,29 +73,23 @@ export function getSeason(year: number, season: string) {
 export function getYear(year: number) {
   return (dispatch: Function, getState: Function) => {
     const state = getState(),
-          token = state.config.token,
-          cache = state.years[year]
+          token = state.config.token;
 
-    if (cache)
-      return false
+    let seasons = ['winter', 'spring', 'summer', 'fall']
+    let seasonsLeft =
+      seasons.filter(season => !state.seasons[year + "-" + season])
+
+    console.log(seasonsLeft)
 
     if (token)
-      return getAnimeYear(year, token.access_token)
+      return getAnimeYear(year, seasonsLeft, token.access_token)
     else
       return dispatch(getAccessToken())
-        .then(newToken => getAnimeYear(year, newToken.access_token))
+        .then(newToken => getAnimeYear(year, seasonsLeft, newToken.access_token))
 
-    function getAnimeYear(year: number, accessToken: string) {
-      dispatch(fetchAnimeListRequest())
-      return AL.getAnimeYear(year, accessToken)
-         .then(data => {
-           dispatch(setYear(year, data))
-           dispatch(fetchAnimeListComplete())
-         })
-         .catch(err => {
-           dispatch(serverError(err))
-           dispatch(fetchAnimeListFailure())
-         })
+    function getAnimeYear(year: number, seasonsLeft, accessToken: string) {
+      let getSeasons = seasonsLeft.map(season => dispatch(getSeason(year, season)))
+      return Promise.all(getSeasons)
     }
   }
 }

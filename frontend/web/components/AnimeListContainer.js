@@ -91,7 +91,14 @@ class AnimeListContainer extends Component {
     if(season && year) {
       animeList = animes[year + '-' + season]
     } else if(year) {
-      animeList = animes[year]
+
+      let s = ['winter', 'summer', 'spring', 'fall']
+
+      let seasonsToShow =
+        s.filter(season => animes[year + '-' + season])
+         .map(season => animes[year + '-' + season])
+
+      animeList = [].concat(...seasonsToShow)
     }
 
     if(genres && animeList) {

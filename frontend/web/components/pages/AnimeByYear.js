@@ -6,12 +6,12 @@ import AnimeListContainer from '../AnimeListContainer'
 class AnimeByYear extends Component {
   props: {
     year: ?number,
-    years: Object,
+    seasons: Object,
     params: Object
   }
 
   render(){
-    let { years, year } = this.props
+    let { seasons, year } = this.props
 
     if(this.props.params) {
       let { params } = this.props
@@ -19,9 +19,9 @@ class AnimeByYear extends Component {
     }
 
     return (
-      <AnimeListContainer animes={years} year={year} />
+      <AnimeListContainer animes={seasons} year={year} />
     )
   }
 }
 
-export default connect(({ years }) => ({ years }))(AnimeByYear)
+export default connect(({ seasons }) => ({ seasons }))(AnimeByYear)
