@@ -8,10 +8,11 @@ import AnimeList from './AnimeList'
 import Genres from './Genres'
 
 const filterAnimeList = (animeList, filters) =>
-  animeList.filter(anime => {
-    return filters.every(filter => anime.genres.find(genre => filter === genre))
-    // return anime.genres.find(genre => filters.find(filter => filter === genre))
-  })
+  animeList.filter(anime =>
+    filters.every(filter =>
+      anime.genres.find(genre => filter === genre)
+    )
+  )
 
 class AnimeListContainer extends Component {
   props: {
