@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import Loader from './Loader'
 
 class AnimeList extends Component {
   props: {
@@ -32,6 +33,8 @@ class AnimeList extends Component {
               </Link>
             </li>
           ))
+    } else {
+      animeList = <Loader />
     }
 
     return (
