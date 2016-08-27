@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
 const Loader = () => (
   <div className={css(styles.container)}>
-    <Loading type='bars' color='#333' width="200px" delay="0"/>
+    <Loading type='bars' color='skyblue' width="200px" delay="0"/>
   </div>
 )
 
