@@ -10,6 +10,7 @@ import Layout from './components/layouts/MainLayout'
 import AnimeDetails from './components/pages/AnimeDetails'
 import AnimeByYear from './components/pages/AnimeByYear'
 import AnimeBySeason from './components/pages/AnimeBySeason'
+import Search from './components/pages/Search'
 
 const Routes = () => (
   <Provider store={store}>
@@ -18,6 +19,7 @@ const Routes = () => (
         <IndexRoute component={Home} />
         <Route path="/about" component={About} />
         <Route path="/anime/:id" component={AnimeDetails} />
+        <Route path="/search/:query" component={Search} />
         <Route path="/:year/:season" component={AnimeBySeason} />
         <Route path="/:year" component={AnimeByYear} />
       </Route>
