@@ -1,7 +1,8 @@
 import React from 'react'
 import Loading from 'react-loading'
+import { StyleSheet, css } from 'aphrodite'
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     width: "100%",
     display: "flex",
@@ -14,11 +15,11 @@ const styles = {
     transform: "translate(-50%, -50%)",
     position: "absolute"
   }
-}
+})
 
 const Loader = () => (
-  <div style={styles.container}>
-    <Loading type='bars' color='#333' width="10%" delay="0"/>
+  <div className={css(styles.container)}>
+    <Loading type='bars' color='#333' width="200px" delay="0"/>
   </div>
 )
 
