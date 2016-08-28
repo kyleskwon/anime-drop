@@ -28,30 +28,24 @@
 
 .anime-container
   container()
-  padding 0 20px 0
+  padding 0 10px 0
   display flex
   flex-wrap wrap
 
 .anime-item
+  list-style none
   background white
   border-radius 3px
   position relative
-  width calc(25% - 15px)
+  width calc(25% - 20px)
   height 0
   overflow hidden
   padding-bottom 30%
-  margin-right 20px
-  margin-bottom 20px
-
-  &:nth-child(4n)
-    margin-right 0
+  margin 0 10px 20px
 
   +below($width-m)
     width calc(33.333% - 13.3333px)
     padding-bottom 38%
-
-    &:nth-child(4n)
-      margin-right 20px
 
     &:nth-child(3n)
       margin-right 0
@@ -60,14 +54,9 @@
     width calc(50% - 10px)
     padding-bottom 60%
 
-    &:nth-child(3n)
-      margin-right 20px
-
-    &:nth-child(2n)
-      margin-right 0
-
   a
     display block
+    float left
 
   .overlay
     position absolute

@@ -77,6 +77,7 @@
     "react": "15.3.0",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "15.3.0",
+    "react-flip-move": "2.4.2",
     "react-loading": "0.0.9",
     "react-native": "^0.31.0",
     "react-redux": "^4.4.5",
