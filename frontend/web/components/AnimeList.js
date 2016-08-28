@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Loader from './Loader'
-import FlipMove from 'react-flip-move'
 import MotionFlip from 'react-motion-flip'
 
 class AnimeList extends Component {

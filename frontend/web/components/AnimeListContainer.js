@@ -68,7 +68,7 @@ class AnimeListContainer extends Component {
     ){
       return
     }
-    if(!this.props.animes.loading){
+    if(this.props.animes.loading.length === 0){
       this.loadAnime(nextProps)
     }
   }
