@@ -3,7 +3,64 @@ import React from 'react'
 import { Link, withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
+const routes = [
+  {
+    param: 'winter',
+    name: 'Winter'
+  },
+  {
+    param: 'spring',
+    name: 'Spring',
+  },
+  {
+    param: 'summer',
+    name: 'Summer'
+  },
+  {
+    param: 'fall',
+    name: 'Fall'
+  },
+  {
+    param: 2016,
+    name: 2016
+  },
+  {
+    param: 2015,
+    name: 2015,
+  },
+  {
+    param: 2014,
+    name: 2014
+  },
+  {
+    param: 2013,
+    name: 2013
+  },
+  {
+    param: 2012,
+    name: 2012
+  },
+  {
+    param: 2011,
+    name: 2011
+  }
+]
+
 class Header extends React.Component {
+  isCurrent(param) {
+    const { routing, config } = this.props
+
+    let currentSeason = routing.params.season || config.currentSeason.season,
+        currentYear = routing.params.year || config.currentSeason.year
+
+    switch(typeof param){
+      case 'number':
+        return param == currentYear ? 'current' : ''
+      case 'string':
+        return param == currentSeason ? 'current' : ''
+    }
+  }
+
   getPathNameYear(param, routing: Object, config: Object){
     if(routing.params.year)
       return `/${param}/${routing.params.season}`
@@ -42,14 +99,12 @@ class Header extends React.Component {
       <header>
         <Link to="/"><h2 className="site-title">Anime Drop</h2></Link>
         <nav className="primary">
-          <a onClick={this.handleRouteChange.bind(this, 'winter')}>Winter</a>
-          <a onClick={this.handleRouteChange.bind(this, 'spring')}>Spring</a>
-          <a onClick={this.handleRouteChange.bind(this, 'summer')}>Summer</a>
-          <a onClick={this.handleRouteChange.bind(this, 'fall')}>Fall</a>
-          <a onClick={this.handleRouteChange.bind(this, 2016)}>2016</a>
-          <a onClick={this.handleRouteChange.bind(this, 2015)}>2015</a>
-          <a onClick={this.handleRouteChange.bind(this, 2014)}>2014</a>
-          <a onClick={this.handleRouteChange.bind(this, 2013)}>2013</a>
+          {routes.map(({ name, param}) =>
+            <a
+              key={param}
+              onClick={this.handleRouteChange.bind(this, param)}
+              className={this.isCurrent(param)}>{name}</a>
+          )}
         </nav>
       </header>
     )
