@@ -6,7 +6,7 @@ import seasons from '../reducers/seasons';
 import animeCache from '../reducers/animeCache';
 import animeListOptions from '../reducers/animeListOptions';
 import genres from '../reducers/genres';
-import { routerReducer } from 'react-router-redux';
+import { routeParamsReducer } from 'react-router-redux-params';
 import {reducer as formReducer} from 'redux-form';
 
 const rootReducer = combineReducers({
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   animeCache,
   animeListOptions,
   genres,
-  routing: routerReducer,
+  routing: routeParamsReducer,
   form: formReducer
 })
 

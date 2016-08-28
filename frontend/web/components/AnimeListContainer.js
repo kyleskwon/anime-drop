@@ -86,7 +86,7 @@ class AnimeListContainer extends Component {
       routing
     } = this.props
     let animeList,
-        genres = routing.locationBeforeTransitions.query.genres,
+        genres = routing.location.query.genres,
         arrGenres
 
     if(season && year) {

@@ -25,8 +25,8 @@ class Genres extends React.Component {
 
   updateGenres(genre){
     let { router, routing } = this.props,
-        currentGenres = routing.locationBeforeTransitions.query.genres,
-        currentPath = routing.locationBeforeTransitions.pathname,
+        currentGenres = routing.location.query.genres,
+        currentPath = routing.location.pathname,
         genres,
         genresArr = currentGenres ? currentGenres.split(',') : []
 
@@ -54,7 +54,7 @@ class Genres extends React.Component {
 
   render() {
     const { genres, routing } = this.props,
-          currentGenres = routing.locationBeforeTransitions.query.genres,
+          currentGenres = routing.location.query.genres,
           genresArr = currentGenres ? currentGenres.split(',') : []
     return (
       <ul className="genres">
