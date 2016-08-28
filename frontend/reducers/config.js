@@ -9,17 +9,18 @@ const initialState = () => {
       month = now.getMonth(),
       season;
 
+
   switch(true){
-    case month >= 0:
+    case month < 3:
       season = 'winter'
       break;
-    case month >= 3:
+    case month < 6:
       season = 'spring'
       break;
-    case month >= 6:
+    case month < 9:
       season = 'summer'
       break;
-    case month >= 9:
+    case month < 12:
       season = 'fall'
       break;
   }
