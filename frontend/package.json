@@ -54,7 +54,7 @@
     "gzip-size": "3.0.0",
     "html-webpack-plugin": "2.22.0",
     "jest-cli": "^14.1.0",
-    "jest-fetch-mock": "1.0.4",
+    "jest-fetch-mock": "1.0.5",
     "json-loader": "0.5.4",
     "opn": "4.0.2",
     "postcss-loader": "0.9.1",
