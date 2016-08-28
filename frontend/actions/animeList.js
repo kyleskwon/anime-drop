@@ -79,8 +79,6 @@ export function getYear(year: number) {
     let seasonsLeft =
       seasons.filter(season => !state.seasons[year + "-" + season])
 
-    console.log(seasonsLeft)
-
     if (token)
       return getAnimeYear(year, seasonsLeft, token.access_token)
     else

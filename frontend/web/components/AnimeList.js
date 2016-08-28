@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Loader from './Loader'
 import FlipMove from 'react-flip-move'
+import MotionFlip from 'react-motion-flip'
 
 class AnimeList extends Component {
   props: {
@@ -20,7 +21,7 @@ class AnimeList extends Component {
       return animes
           .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
           .map((anime, i) => (
-            <li className="anime-item" key={anime.id}>
+            <div key={anime.id}>
               <Link to={`/anime/${anime.id}`}>
                 <img src={anime.image_url_lge} />
                 <div className="overlay">
@@ -28,7 +29,7 @@ class AnimeList extends Component {
                   {anime.average_score ? <div className="score">{this.formatScore(anime.average_score)}</div> : null}
                 </div>
               </Link>
-            </li>
+            </div>
           ))
     }
   }
@@ -39,13 +40,14 @@ class AnimeList extends Component {
 
     if(animes){
       content = (
-        <FlipMove
-          staggerDurationBy="30"
-          duration="500"
+        <MotionFlip
+          component="ul"
+          childComponent="li"
           className="anime-container"
-          typeName="ul">
+          childClassName="anime-item"
+        >
           {this.renderAnime()}
-        </FlipMove>
+        </MotionFlip>
       )
     }
 
