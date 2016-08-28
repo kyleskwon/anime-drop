@@ -50,6 +50,10 @@ class Header extends React.Component {
   isCurrent(param) {
     const { routing, config } = this.props
 
+    //if route isn't home or has season/year params
+    if(!routing.params.season && !routing.params.year && routing.location.pathname !== "/")
+      return ''
+
     let currentSeason = routing.params.season || config.currentSeason.season,
         currentYear = routing.params.year || config.currentSeason.year
 
