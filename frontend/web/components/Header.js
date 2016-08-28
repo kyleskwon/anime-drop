@@ -4,22 +4,19 @@ import { Link, withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
 class Header extends React.Component {
-  handleRouteChange(){
-    console.log(this.props.routing.locationBeforeTransitions)
-    console.log(this.props)
-    // if(genresArr.length > 0 ) {
-    //   genres = genresArr.join(',')
-    //   console.log(router)
-    //   router.replace({
-    //     pathname: currentPath,
-    //     query: { genres }
-    //   })
-    // } else {
-    //   router.replace({
-    //     pathname: currentPath,
-    //     query: {}
-    //   })
-    // }
+  handleRouteChange(season){
+    const { routing, router } = this.props
+    let pathname
+
+    if(!routing.params.year) {
+      pathname = "/2016/" + season
+    } else {
+      pathname = `/${routing.params.year}/${season}`
+    }
+    router.push({
+      pathname,
+      query: routing.location.query
+    })
   }
   render(){
     return (

@@ -39,12 +39,12 @@ class Genres extends React.Component {
     if(genresArr.length > 0 ) {
       genres = genresArr.join(',')
       console.log(router)
-      router.replace({
+      router.push({
         pathname: currentPath,
         query: { genres }
       })
     } else {
-      router.replace({
+      router.push({
         pathname: currentPath,
         query: {}
       })
