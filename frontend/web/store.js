@@ -16,5 +16,3 @@ const middleware = [reduxThunk, logger, syncHistory(browserHistory)]
 const store = createStore(rootReducer, {}, applyMiddleware(...middleware))
 
 export default store
-
-export const history = syncHistory(browserHistory, store)
