@@ -56,7 +56,8 @@ $ npm test -- --no-cache
 ```
 
 ##Todo
-- [ ] - Genres to filter list
-- [ ] - Hook up Genres to Anilist API
+- [ ] - Remove double call of API token
+- [x] - Genres to filter list
+- [x] - Hook up Genres to Anilist API
 - [x] - Add in Slack integration
 - [x] - Dynamic current season/year based on date
