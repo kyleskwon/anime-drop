@@ -3,6 +3,7 @@ import React from 'react'
 import { getAnimeDetails } from '../../../actions/animeDetails';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import Loader from '../Loader'
 
 class AnimeDetails extends React.Component {
   props: {
@@ -75,7 +76,7 @@ class AnimeDetails extends React.Component {
       </div>
     } else {
       console.log('loading');
-      content = <div>Loading...</div>
+      content = <Loader />
     }
     return <div className="main-container">
       <div className="anime-details">
