@@ -3,33 +3,35 @@ import AL from '../api/anilist'
 import { serverError } from './errors'
 import { getAccessToken } from './accessToken'
 
-const fetchAnimeListRequest = () => ({
-  type: 'FETCH_ANIMELIST_REQUEST'
+const fetchAnimeListRequest = (year, season) => ({
+  type: 'FETCH_ANIMELIST_REQUEST',
+  year,
+  season
 })
 
-const fetchAnimeListComplete = () => ({
-  type: 'FETCH_ANIMELIST_COMPLETE'
+const fetchAnimeListComplete = (year, season) => ({
+  type: 'FETCH_ANIMELIST_COMPLETE',
+  year,
+  season
 })
 
-const fetchAnimeListFailure = () => ({
-  type: 'FETCH_ANIMELIST_FAILURE'
+const fetchAnimeListFailure = (year, season) => ({
+  type: 'FETCH_ANIMELIST_FAILURE',
+  year,
+  season
 })
 
 const setSeason = (year: number, season: string, animes: Array<Object>) => ({
   type: 'SET_SEASON',
-  payload: {
-    year,
-    season,
-    animes
-  }
+  year,
+  season,
+  animes
 })
 
 const setYear = (year: number, animes: Array<Object>) => ({
   type: 'SET_YEAR',
-  payload: {
-    year,
-    animes
-  }
+  year,
+  animes
 })
 
 export function getAnimeList (year: number, season: ?string) {
@@ -56,11 +58,11 @@ export function getSeason(year: number, season: string) {
         .then(newToken => getAnimeSeason(year, season, newToken.access_token))
 
     function getAnimeSeason(year: number, season: string, accessToken: string) {
-      dispatch(fetchAnimeListRequest())
+      dispatch(fetchAnimeListRequest(year, season))
       return AL.getAnimeSeason({ year, season }, accessToken)
         .then(data => {
           dispatch(setSeason(year, season, data))
-          dispatch(fetchAnimeListComplete())
+          dispatch(fetchAnimeListComplete(year, season))
         })
         .catch(err => {
           dispatch(serverError(err))
@@ -78,8 +80,6 @@ export function getYear(year: number) {
     let seasons = ['winter', 'spring', 'summer', 'fall']
     let seasonsLeft =
       seasons.filter(season => !state.seasons[year + "-" + season])
-
-    console.log(seasonsLeft)
 
     if (token)
       return getAnimeYear(year, seasonsLeft, token.access_token)

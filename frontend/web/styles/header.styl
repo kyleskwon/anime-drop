@@ -1,6 +1,6 @@
 header
   font-family 'Varela Round'
-  background skyblue
+  background $blue
   color white
   padding 0 20px
   width 100%
@@ -30,5 +30,12 @@ header
       text-decoration none
       position relative
       display inline-block
-      margin 2px 15px 0
+      padding 2px 15px 0
       text-align center
+
+      &.current
+        color $blue
+        background white
+
+      &:hover
+        cursor pointer

@@ -1,21 +1,24 @@
 // @flow
-function reducer(state: Object = {}, action: Object = {}){
+type seasons = {
+  loading: Array<string>
+}
+
+function reducer(state: seasons = { loading: [] }, action: Object = {}){
   switch(action.type) {
     case 'SET_SEASON':
-      let { animes, year, season } = action.payload
       return {
         ...state,
-        [`${year}-${season}`]: animes
+        [`${action.year}-${action.season}`]: action.animes
       }
-    case 'LOADING_SEASON_PENDING':
+    case 'FETCH_ANIMELIST_REQUEST':
       return {
         ...state,
-        loading: true
+        loading: [...state.loading, `${action.year}-${action.season}`]
       }
-    case 'LOADING_SEASON_COMPLETE':
+    case 'FETCH_ANIMELIST_COMPLETE':
       return {
         ...state,
-        loading: false
+        loading: state.loading.filter(season => season !== `${action.year}-${action.season}`)
       }
     default:
       return state

@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import Loader from './Loader'
+import MotionFlip from 'react-motion-flip'
 
 class AnimeList extends Component {
   props: {
@@ -11,18 +13,14 @@ class AnimeList extends Component {
     return averageScore === 0 ? "" : averageScore
   }
 
-  render() {
-    const {
-      animes
-    } = this.props
-
-    let animeList
+  renderAnime() {
+    const { animes } = this.props
 
     if (animes) {
-      animeList = animes
+      return animes
           .sort((a, b) => a.average_score > b.average_score ? -1 : 1)
           .map((anime, i) => (
-            <li className="anime-item" key={i}>
+            <div key={anime.id}>
               <Link to={`/anime/${anime.id}`}>
                 <img src={anime.image_url_lge} />
                 <div className="overlay">
@@ -30,14 +28,32 @@ class AnimeList extends Component {
                   {anime.average_score ? <div className="score">{this.formatScore(anime.average_score)}</div> : null}
                 </div>
               </Link>
-            </li>
+            </div>
           ))
+    }
+  }
+
+  render() {
+    const { animes } = this.props
+    let content = <Loader />
+
+    if(animes){
+      content = (
+        <MotionFlip
+          component="ul"
+          childComponent="li"
+          className="anime-container"
+          childClassName="anime-item"
+        >
+          {this.renderAnime()}
+        </MotionFlip>
+      )
     }
 
     return (
-      <ul className="anime-container">
-        {animeList}
-      </ul>
+      <div>
+        {content}
+      </div>
     )
   }
 }

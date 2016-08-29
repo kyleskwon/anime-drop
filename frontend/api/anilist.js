@@ -13,14 +13,16 @@ type ALtype = {
     browse: string,
     accessToken: string,
     anime: string,
-    genreList: string
+    genreList: string,
+    search: string
   },
   getAnimeSeason: Function,
   getAPIToken: Function,
   getAnimeDetails: Function,
   getAnimeDetailsSmall: Function,
   getAnimeYear: Function,
-  getGenres: Function
+  getGenres: Function,
+  searchAnime: Function
 }
 
 const encodeParams = (options) =>
@@ -34,7 +36,8 @@ const AL: ALtype = {
     browse: 'browse/anime',
     accessToken: 'auth/access_token',
     anime: 'anime/',
-    genreList: 'genre_list'
+    genreList: 'genre_list',
+    search: 'anime/search/'
   },
   getAnimeSeason(params: {}, token: string): Promise<*>{
     let options = {
@@ -108,8 +111,16 @@ const AL: ALtype = {
     }
     let url = `${this.urls.root}${this.urls.genreList}?&access_token=${token}`;
     return fetch(url, options).then(res => res.json())
-  }
+  },
+  searchAnime(query: string, token: string): Promise<*>{
+    let options = {
+      method: 'GET',
+      headers
+    }
 
+    let url = `${this.urls.root}${this.urls.search}${query}?&access_token=${token}`;
+    return fetch(url, options).then(res => res.json())
+  }
 }
 
 export default AL;

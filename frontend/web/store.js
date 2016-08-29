@@ -1,6 +1,6 @@
 // @flow
 import { applyMiddleware, createStore } from 'redux'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { syncHistory, routeParamsReducer} from 'react-router-redux-params'
 import { browserHistory } from 'react-router'
 
 // redux middleware
@@ -11,10 +11,8 @@ import reduxThunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 
 const logger = createLogger()
-const middleware = [reduxThunk, logger]
+const middleware = [reduxThunk, logger, syncHistory(browserHistory)]
 
 const store = createStore(rootReducer, {}, applyMiddleware(...middleware))
 
 export default store
-
-export const history = syncHistoryWithStore(browserHistory, store)

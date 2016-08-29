@@ -10,7 +10,7 @@
     "test:nocache": "jest --no-cache",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "deploy": "npm run build && surge build --domain animedrop.com"
+    "deploy": "npm run build && cd build && mv index.html 200.html && surge . --domain animedrop.com"
   },
   "jest": {
     "automock": false,
@@ -54,7 +54,7 @@
     "gzip-size": "3.0.0",
     "html-webpack-plugin": "2.22.0",
     "jest-cli": "^14.1.0",
-    "jest-fetch-mock": "1.0.4",
+    "jest-fetch-mock": "1.0.5",
     "json-loader": "0.5.4",
     "opn": "4.0.2",
     "postcss-loader": "0.9.1",
@@ -71,15 +71,19 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
+    "aphrodite": "0.5.0",
     "asteroid": "^2.0.2",
     "fetch-everywhere": "^1.0.5",
     "react": "15.3.0",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "15.3.0",
+    "react-flip-move": "2.4.2",
+    "react-loading": "0.0.9",
+    "react-motion-flip": "git@github.com:jefflau/react-motion-flip.git",
     "react-native": "^0.31.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.4",
+    "react-router-redux-params": "1.0.1",
     "redux": "^3.5.2",
     "redux-form": "^5.3.1",
     "redux-logger": "^2.6.1",

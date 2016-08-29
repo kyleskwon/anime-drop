@@ -8,10 +8,11 @@ import AnimeList from './AnimeList'
 import Genres from './Genres'
 
 const filterAnimeList = (animeList, filters) =>
-  animeList.filter(anime => {
-    return filters.every(filter => anime.genres.find(genre => filter === genre))
-    // return anime.genres.find(genre => filters.find(filter => filter === genre))
-  })
+  animeList.filter(anime =>
+    filters.every(filter =>
+      anime.genres.find(genre => filter === genre)
+    )
+  )
 
 class AnimeListContainer extends Component {
   props: {
@@ -67,7 +68,7 @@ class AnimeListContainer extends Component {
     ){
       return
     }
-    if(!this.props.animes.loading){
+    if(this.props.animes.loading.length === 0){
       this.loadAnime(nextProps)
     }
   }
@@ -85,7 +86,7 @@ class AnimeListContainer extends Component {
       routing
     } = this.props
     let animeList,
-        genres = routing.locationBeforeTransitions.query.genres,
+        genres = routing.location.query.genres,
         arrGenres
 
     if(season && year) {
