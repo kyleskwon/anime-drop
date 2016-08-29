@@ -28,16 +28,29 @@ class AnimeDetails extends React.Component {
   render () {
     const { animeCache } = this.props;
     let content = null;
-    let details = animeCache[this.props.params.id];
+    let details = animeCache[this.props.params.id]
     if (details) {
-      console.log('got details');
-      let averageScore = (Math.round(parseInt(details.average_score, 10)))/10;
-      let description = details.description.replace(/<[^>]*>/ig, "");
+      console.log('got details')
+      console.log(details);
+      let averageScore = (Math.round(parseInt(details.average_score, 10)))/10
+      let description = details.description.replace(/<[^>]*>/ig, "")
+      let characters = []
+      if (details.characters.length > 0) {
+        characters = details.characters.map((charDetail, i) => {
+          return <li key={i}>{charDetail.name_first}</li>
+        })
+        console.log(characters)
+      }
       content = <div>
         <img src={details.image_url_lge} />
         <div className="details-container">
           <p className="title">{details.title_romaji}</p>
-          <p className="average-score">{averageScore}</p>
+          <p className="title-japanese">{details.title_japanese}</p>
+          <p className="average-score">Rating: {averageScore}</p>
+          <p>Airing Status: {details.airing_status}</p>
+          <ul className="cast">
+            {characters}
+          </ul>
           <p className="description">{description}</p>
         </div>
       </div>
@@ -46,7 +59,6 @@ class AnimeDetails extends React.Component {
       content = <div>Loading...</div>
     }
     return <div className="main-container">
-      <Link to="/">home</Link>
       <div className="anime-details">
         {content}
       </div>
