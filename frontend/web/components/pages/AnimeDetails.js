@@ -36,22 +36,41 @@ class AnimeDetails extends React.Component {
       let description = details.description.replace(/<[^>]*>/ig, "")
       let characters = []
       if (details.characters.length > 0) {
-        characters = details.characters.map((charDetail, i) => {
-          return <li key={i}>{charDetail.name_first}</li>
+        characters = details.characters.slice(0, 7)
+          .map((charDetail, i) => {
+            return <li className="character-card" key={i}>
+                <img src={charDetail.image_url_med} className="character-image" />
+                <div className="name-card">
+                  <div className="character-name">
+                    {charDetail.name_first + " "}
+                    {charDetail.name_last}
+                  </div>
+                  <div className="actor-name">
+                    {charDetail.actor[0].name_first + " "}
+                    {charDetail.actor[0].name_last}
+                  </div>
+                </div>
+              </li>
+
         })
         console.log(characters)
       }
       content = <div>
         <img src={details.image_url_lge} />
-        <div className="details-container">
+        <div className="side-details-container">
           <p className="title">{details.title_romaji}</p>
           <p className="title-japanese">{details.title_japanese}</p>
           <p className="average-score">Rating: {averageScore}</p>
           <p>Airing Status: {details.airing_status}</p>
+
+        </div>
+        <div className="bottom-details-container">
+          <h3>SYNOPSIS</h3>
+          <p className="description">{description}</p>
           <ul className="cast">
+            <h3>Main Characters</h3>
             {characters}
           </ul>
-          <p className="description">{description}</p>
         </div>
       </div>
     } else {
