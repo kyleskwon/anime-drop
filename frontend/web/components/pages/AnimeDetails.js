@@ -6,6 +6,22 @@ import { Link } from 'react-router'
 import Loader from '../Loader'
 import formatScore from '../../../utils'
 
+const Character = ({charDetail: {name_first, name_last, image_url_med, actor}}) => (
+  <li className="character-card">
+    <img src={image_url_med} className="character-image" />
+    <div className="name-card">
+      <div className="character-name">
+        {name_first + " "}
+        {name_last}
+      </div>
+      <div className="actor-name">
+        {actor[0].name_first + " "}
+        {actor[0].name_last}
+      </div>
+    </div>
+  </li>
+)
+
 class AnimeDetails extends React.Component {
   props: {
     animeCache: Array<Object>,
@@ -13,23 +29,6 @@ class AnimeDetails extends React.Component {
     getAnimeDetails: Function,
     params: Object
   }
-
-  const Character = ({name_first, name_last, image_url_med, actor}) => (
-    <li className="character-card">
-      <img src={image_url_med} className="character-image" />
-      <div className="name-card">
-        <div className="character-name">
-          {name_first + " "}
-          {name_last}
-        </div>
-        <div className="actor-name">
-          {console.log(actor)}
-          {actor ? actor[0].name_first + " " : ""}
-          {actor ? actor[0].name_last : ""}
-        </div>
-      </div>
-    </li>
-  )
 
   componentWillMount() {
     console.log('component will mount', this.props);
