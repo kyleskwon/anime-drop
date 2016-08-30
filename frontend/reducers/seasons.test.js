@@ -9,28 +9,26 @@ describe('Seasons Reducer', () => {
 
       const action = {
           type: 'SET_SEASON',
-          payload: {
-            year: 2015,
-            season: 'spring',
-            animes: [{
-                "id": 20725,
-                "title_romaji": "Kuroko no Basket 3rd Season",
-                "type": "TV",
-                "image_url_med": "http://anilist.co/img/dir/anime/med/20725-Vm6ZzEFvT6w3.jpg",
-                "image_url_sml": "http://anilist.co/img/dir/anime/sml/20725-Vm6ZzEFvT6w3.jpg",
-                "adult": false,
-                "popularity": 4001,
-                "title_japanese": "黒子のバスケ 3rd SEASON",
-                "title_english": "Kuroko's Basketball 3",
-                "synonyms": ["Kuroko no Basuke 3"],
-                "image_url_lge": "http://anilist.co/img/dir/anime/reg/20725-Vm6ZzEFvT6w3.jpg",
-                "airing_status": "finished airing",
-                "average_score": 8.3,
-                "total_episodes": 25,
-                "relation_type": null,
-                "role": null
-            }]
-          }
+          year: 2015,
+          season: 'spring',
+          animes: [{
+              "id": 20725,
+              "title_romaji": "Kuroko no Basket 3rd Season",
+              "type": "TV",
+              "image_url_med": "http://anilist.co/img/dir/anime/med/20725-Vm6ZzEFvT6w3.jpg",
+              "image_url_sml": "http://anilist.co/img/dir/anime/sml/20725-Vm6ZzEFvT6w3.jpg",
+              "adult": false,
+              "popularity": 4001,
+              "title_japanese": "黒子のバスケ 3rd SEASON",
+              "title_english": "Kuroko's Basketball 3",
+              "synonyms": ["Kuroko no Basuke 3"],
+              "image_url_lge": "http://anilist.co/img/dir/anime/reg/20725-Vm6ZzEFvT6w3.jpg",
+              "airing_status": "finished airing",
+              "average_score": 8.3,
+              "total_episodes": 25,
+              "relation_type": null,
+              "role": null
+          }]
       }
 
       const expectedState = {
@@ -60,15 +58,17 @@ describe('Seasons Reducer', () => {
   it('sets loading to true', () => {
 
       const state = {
-        loading: false
+        loading: []
       }
 
       const action = {
-        type: 'LOADING_SEASON_PENDING',
+        type: 'FETCH_ANIMELIST_REQUEST',
+        year: 2016,
+        season: 'summer'
       }
 
       const expectedState = {
-        loading: true
+        loading: ['2016-summer']
       };
 
       expect(seasons(state, action)).toEqual(expectedState);
@@ -77,15 +77,17 @@ describe('Seasons Reducer', () => {
   it('sets loading to false', () => {
 
       const state = {
-        loading: true
+        loading: ['2016-summer']
       }
 
       const action = {
-        type: 'LOADING_SEASON_COMPLETE',
+        type: 'FETCH_ANIMELIST_COMPLETE',
+        year: 2016,
+        season: 'summer'
       }
 
       const expectedState = {
-        loading: false
+        loading: []
       };
 
       expect(seasons(state, action)).toEqual(expectedState);
