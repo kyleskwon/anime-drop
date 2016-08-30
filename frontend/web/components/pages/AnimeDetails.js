@@ -46,11 +46,11 @@ class AnimeDetails extends React.Component {
   render () {
     const { animeCache } = this.props
     let content = null,
-      details = animeCache[this.props.params.id]
+        details = animeCache[this.props.params.id]
     if (details) {
       let averageScore = formatScore(details.average_score),
-        description = details.description.replace(/<[^>]*>/ig, ""),
-        characters
+          description = details.description.replace(/<[^>]*>/ig, ""),
+          characters
       if (details.characters.length > 0) {
         characters = details.characters.slice(0, 7)
           .map((charDetail, i) => <Character charDetail={charDetail} key={i}/>)
