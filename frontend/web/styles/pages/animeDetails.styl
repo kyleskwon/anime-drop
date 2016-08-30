@@ -3,25 +3,63 @@
 
   img
     float left
+    margin-bottom 25px
 
-  .details-container
-    display inline-block
-    width 60%
-    margin-left 25px
-    // background skyblue
+.side-details-container
+  display inline-block
+  width 60%
+  margin-left 25px
+  // background skyblue
 
-    >:nth-child(n + 2)
-      margin-top 10px
-    p
-      font-family Varela Round
-      float left
-      // color white
-      clear both
+  >:nth-child(n + 2)
+    margin-top 10px
+  p
+    font-family Varela Round
+    // color white
+    clear both
 
-    .title
-      font-size 28px
-      font-weight bold
+  .title
+    font-size 28px
+    font-weight bold
 
-    .average-score {}
+  .average-score {}
 
-    .description{}
+
+.bottom-details-container
+  clear left
+  h3
+    font-weight bold
+    font-size 20px
+    margin-bottom 10px
+  p
+    line-height 1.25em
+
+.description
+  margin-bottom 25px
+
+.cast
+  li
+    list-style-type none
+
+.character-card
+  float left
+  margin 0 10px 0 0
+  display flex
+  justify-content center
+  flex-wrap wrap
+  flex-direction column
+  align-items flex-start
+  text-align center
+
+  .character-image
+    margin 0 auto 10px
+    float none
+    height 144px
+
+
+  .name-card
+    position relative
+    margin-bottom auto
+
+.character-name
+  color #87ceeb

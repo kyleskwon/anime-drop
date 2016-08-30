@@ -33,6 +33,7 @@ if (isInCreateReactAppSource) {
     reducers: resolveApp('../template/reducers'),
     actions: resolveApp('../template/actions'),
     api: resolveApp('../template/api'),
+    utils: resolveApp('../template/utils.js'),
     appNodeModules: resolveOwn('../node_modules'),
     ownNodeModules: resolveOwn('../node_modules')
   };
@@ -47,6 +48,7 @@ if (isInCreateReactAppSource) {
     reducers: resolveApp('reducers'),
     actions: resolveApp('actions'),
     api: resolveApp('api'),
+    utils: resolveApp('utils.js'),
     appNodeModules: resolveApp('node_modules'),
     // this is empty with npm3 but node resolution searches higher anyway:
     ownNodeModules: resolveOwn('../node_modules')
@@ -62,6 +64,7 @@ if (isInCreateReactAppSource) {
     reducers: resolveApp('reducers'),
     actions: resolveApp('actions'),
     api: resolveApp('api'),
+    utils: resolveApp('utils.js'),
     appNodeModules: resolveApp('node_modules'),
     ownNodeModules: resolveApp('node_modules')
   };

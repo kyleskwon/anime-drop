@@ -1,8 +1,26 @@
 // @flow
 import React from 'react'
-import { getAnimeDetails } from '../../../actions/animeDetails';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { getAnimeDetails } from '../../../actions/animeDetails'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
+import Loader from '../Loader'
+import formatScore from '../../../utils'
+
+const Character = ({charDetail: {name_first, name_last, image_url_med, actor}}) => (
+  <li className="character-card">
+    <img src={image_url_med} className="character-image" />
+    <div className="name-card">
+      <div className="character-name">
+        {name_first + " "}
+        {name_last}
+      </div>
+      <div className="actor-name">
+        {actor[0].name_first + " "}
+        {actor[0].name_last}
+      </div>
+    </div>
+  </li>
+)
 
 class AnimeDetails extends React.Component {
   props: {
@@ -26,31 +44,46 @@ class AnimeDetails extends React.Component {
 
   }
   render () {
-    const { animeCache } = this.props;
-    let content = null;
-    let details = animeCache[this.props.params.id];
+    const { animeCache } = this.props
+    let content = null,
+        details = animeCache[this.props.params.id]
     if (details) {
-      console.log('got details');
-      let averageScore = (Math.round(parseInt(details.average_score, 10)))/10;
-      let description = details.description.replace(/<[^>]*>/ig, "");
-      content = <div>
-        <img src={details.image_url_lge} />
-        <div className="details-container">
-          <p className="title">{details.title_romaji}</p>
-          <p className="average-score">{averageScore}</p>
-          <p className="description">{description}</p>
+      let averageScore = formatScore(details.average_score),
+          description = details.description.replace(/<[^>]*>/ig, ""),
+          characters
+      if (details.characters.length > 0) {
+        characters = details.characters.slice(0, 7)
+          .map((charDetail, i) => <Character charDetail={charDetail} key={i}/>)
+      }
+      content = (
+        <div>
+          <img src={details.image_url_lge} />
+          <div className="side-details-container">
+            <p className="title">{details.title_romaji}</p>
+            <p className="title-japanese">{details.title_japanese}</p>
+            <p className="average-score">Rating: {averageScore}</p>
+            <p>Airing Status: {details.airing_status}</p>
+          </div>
+          <div className="bottom-details-container">
+            <h3>SYNOPSIS</h3>
+            <p className="description">{description}</p>
+            <ul className="cast">
+              <h3>Main Characters</h3>
+              {characters}
+            </ul>
+          </div>
+        </div>
+      )
+    } else {
+      content = <Loader />
+    }
+    return (
+      <div className="main-container">
+        <div className="anime-details">
+          {content}
         </div>
       </div>
-    } else {
-      console.log('loading');
-      content = <div>Loading...</div>
-    }
-    return <div className="main-container">
-      <Link to="/">home</Link>
-      <div className="anime-details">
-        {content}
-      </div>
-    </div>
+    )
   }
 }
 
