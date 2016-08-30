@@ -55,26 +55,26 @@ class AnimeDetails extends React.Component {
         characters = details.characters.slice(0, 7)
           .map((charDetail, i) => <Character charDetail={charDetail} key={i}/>)
       }
-      content = <div>
-        <img src={details.image_url_lge} />
-        <div className="side-details-container">
-          <p className="title">{details.title_romaji}</p>
-          <p className="title-japanese">{details.title_japanese}</p>
-          <p className="average-score">Rating: {averageScore}</p>
-          <p>Airing Status: {details.airing_status}</p>
-
+      content = (
+        <div>
+          <img src={details.image_url_lge} />
+          <div className="side-details-container">
+            <p className="title">{details.title_romaji}</p>
+            <p className="title-japanese">{details.title_japanese}</p>
+            <p className="average-score">Rating: {averageScore}</p>
+            <p>Airing Status: {details.airing_status}</p>
+          </div>
+          <div className="bottom-details-container">
+            <h3>SYNOPSIS</h3>
+            <p className="description">{description}</p>
+            <ul className="cast">
+              <h3>Main Characters</h3>
+              {characters}
+            </ul>
+          </div>
         </div>
-        <div className="bottom-details-container">
-          <h3>SYNOPSIS</h3>
-          <p className="description">{description}</p>
-          <ul className="cast">
-            <h3>Main Characters</h3>
-            {characters}
-          </ul>
-        </div>
-      </div>
+      )
     } else {
-      console.log('loading');
       content = <Loader />
     }
     return (
