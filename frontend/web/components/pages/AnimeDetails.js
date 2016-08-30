@@ -14,6 +14,23 @@ class AnimeDetails extends React.Component {
     params: Object
   }
 
+  const Character = ({name_first, name_last, image_url_med, actor}) => (
+    <li className="character-card">
+      <img src={image_url_med} className="character-image" />
+      <div className="name-card">
+        <div className="character-name">
+          {name_first + " "}
+          {name_last}
+        </div>
+        <div className="actor-name">
+          {console.log(actor)}
+          {actor ? actor[0].name_first + " " : ""}
+          {actor ? actor[0].name_last : ""}
+        </div>
+      </div>
+    </li>
+  )
+
   componentWillMount() {
     console.log('component will mount', this.props);
     let animeId = this.props.params.id;
@@ -28,23 +45,7 @@ class AnimeDetails extends React.Component {
 
   }
   render () {
-    const { animeCache } = this.props,
-      Character = ({name_first, name_last, image_url_med, actor}) => (
-        <li className="character-card">
-          <img src={image_url_med} className="character-image" />
-          <div className="name-card">
-            <div className="character-name">
-              {name_first + " "}
-              {name_last}
-            </div>
-            <div className="actor-name">
-              {console.log(actor)}
-              {actor ? actor[0].name_first + " " : ""}
-              {actor ? actor[0].name_last : ""}
-            </div>
-          </div>
-        </li>
-      )
+    const { animeCache } = this.props
     let content = null,
       details = animeCache[this.props.params.id]
     if (details) {
@@ -53,7 +54,7 @@ class AnimeDetails extends React.Component {
         characters
       if (details.characters.length > 0) {
         characters = details.characters.slice(0, 7)
-          .map((charDetail, i) => <Character data={charDetail} key={i}/>)
+          .map((charDetail, i) => <Character charDetail={charDetail} key={i}/>)
       }
       content = <div>
         <img src={details.image_url_lge} />
