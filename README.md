@@ -57,7 +57,13 @@ $ npm test -- --no-cache
 
 ##Todo
 - [ ] - Remove double call of API token
-- [x] - Genres to filter list
-- [x] - Hook up Genres to Anilist API
-- [x] - Add in Slack integration
-- [x] - Dynamic current season/year based on date
+- [ ] - Add Sort - Score, Alphabetical
+
+##Todo - AnimeDetails Page
+
+- [ ] - Add Prequel/Sequel if they have one
+- [ ] - Add video trailer embed
+- [ ] - Add Genres
+- [ ] - Add links ( Official, Crunchyroll, Hulu, twitter) to AnimeDetails. Don't show if doesn't exist.
+- [ ] - Add Airing state
+- [ ] - Add Total Episodes
