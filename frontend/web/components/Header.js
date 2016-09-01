@@ -62,6 +62,8 @@ class Header extends React.Component {
         return param == currentYear ? 'current' : ''
       case 'string':
         return param == currentSeason ? 'current' : ''
+      default:
+        return ''
     }
   }
 
@@ -89,6 +91,7 @@ class Header extends React.Component {
       case 'season':
         pathname = this.getPathNameSeason(param, routing, config)
         break
+      default:
     }
 
     if(pathname === routing.location.pathname) return

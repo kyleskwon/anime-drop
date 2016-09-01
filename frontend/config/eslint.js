@@ -50,7 +50,7 @@ module.exports = {
     'array-callback-return': 'warn',
     'default-case': ['warn', { commentPattern: '^no default$' }],
     'dot-location': ['warn', 'property'],
-    eqeqeq: ['warn', 'allow-null'],
+    eqeqeq: ['off', 'allow-null'],
     'guard-for-in': 'warn',
     'new-cap': ['warn', { newIsCap: true }],
     'new-parens': 'warn',

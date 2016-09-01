@@ -1,6 +1,6 @@
 // @flow
 import { applyMiddleware, createStore } from 'redux'
-import { syncHistory, routeParamsReducer} from 'react-router-redux-params'
+import { syncHistory } from 'react-router-redux-params'
 import { browserHistory } from 'react-router'
 
 // redux middleware

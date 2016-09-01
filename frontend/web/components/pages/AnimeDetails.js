@@ -2,7 +2,6 @@
 import React from 'react'
 import { getAnimeDetails } from '../../../actions/animeDetails'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import Loader from '../Loader'
 import formatScore from '../../../utils'
 

@@ -1,8 +1,6 @@
 // @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
-import { getSeason  } from '../../../actions/animeList'
 import AnimeBySeason from './AnimeBySeason'
 
 class Home extends Component {

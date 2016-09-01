@@ -28,12 +28,6 @@ const setSeason = (year: number, season: string, animes: Array<Object>) => ({
   animes
 })
 
-const setYear = (year: number, animes: Array<Object>) => ({
-  type: 'SET_YEAR',
-  year,
-  animes
-})
-
 export function getAnimeList (year: number, season: ?string) {
   if(year && season) {
     return getSeason(year, season)

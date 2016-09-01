@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+
 
 import { getAnimeList } from '../../actions/animeList'
 import AnimeList from './AnimeList'
@@ -44,9 +44,7 @@ class AnimeListContainer extends Component {
       getAnimeList,
       animes,
       year,
-      season,
-      routing,
-      config: { currentSeason }
+      season
     } = props
 
     if(season && this.seasonInCache(animes, year, season)) {
@@ -80,7 +78,6 @@ class AnimeListContainer extends Component {
   render(){
     const {
       animes,
-      config: { currentSeason },
       season,
       year,
       routing
