@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getGenres } from '../../actions/animeList'
 import { withRouter } from 'react-router'
+import classes from 'classnames'
 
 const Genre = ({ handleClick, genre, genresArr}) => {
   let currentFilter = genresArr.includes(genre.genre) ? 'current genre' : 'genre'
@@ -12,6 +13,16 @@ const Genre = ({ handleClick, genre, genresArr}) => {
 }
 
 class Genres extends React.Component {
+  state = {
+    openGenres: Boolean
+  }
+
+  constructor(props){
+    super(props)
+    this.state = {
+      openGenres: false
+    }
+  }
 
   loadGenres() {
     if(this.props.genres.length < 1) {
@@ -57,9 +68,12 @@ class Genres extends React.Component {
           currentGenres = routing.location.query.genres,
           genresArr = currentGenres ? currentGenres.split(',') : []
     return (
-      <ul className="genres">
-        {genres.map(genre => <Genre genresArr={genresArr} key={genre.id} handleClick={this.updateGenres.bind(this, genre)} genre={genre} />)}
-      </ul>
+      <div className="genres">
+        <h3 className="title open-genres" onClick={()=> this.setState({openGenres: !this.state.openGenres})}>Genres</h3>
+        <ul className={classes('genres-list', this.state.openGenres ? 'open': '' )}>
+          {genres.map(genre => <Genre genresArr={genresArr} key={genre.id} handleClick={this.updateGenres.bind(this, genre)} genre={genre} />)}
+        </ul>
+      </div>
     )
   }
 }

@@ -1,7 +1,30 @@
-.genres
+.open-genres
+  display none
+  background $light-blue
+  color white
+  padding 10px 20px
+  +below($width-s)
+    display block
+    margin-bottom 20px
+
+  &:hover
+    cursor pointer
+
+
+.genres-list
   display flex
   flex-wrap wrap
-  padding 10px
+  margin 0 15px
+  overflow hidden
+  transition 0.2s max-height
+
+  +below($width-s)
+    max-height 0
+
+    &.open
+      max-height 999px
+      transition 0.2s all
+
 
   li
     background white
@@ -10,12 +33,18 @@
     list-style none
     text-align center
     padding 5px
-    width 10%
+    width calc(12.5% - 10px)
     border-radius 5px
     margin 0 5px 10px
 
     +below($width-m)
-      width 16.6666%
+      width calc(16.6666% - 10px)
+
+    +below($width-s)
+      width calc(25% - 10px)
+
+    +below($width-s)
+      width calc(33.33% - 10px)
 
     &:hover
       cursor pointer
@@ -43,16 +72,17 @@
   padding-bottom 30%
   margin 0 10px 20px
 
-  +below($width-m)
-    width calc(33.333% - 13.3333px)
+  +below($width-s)
+    width calc(33.333% - 20px)
     padding-bottom 38%
 
-    &:nth-child(3n)
-      margin-right 0
-
-  +below($width-s)
-    width calc(50% - 10px)
+  +below($width-xs)
+    width calc(50% - 20px)
     padding-bottom 60%
+
+  > div
+    height 100%
+    width 100%
 
   a
     display block
@@ -76,6 +106,9 @@
     left 0
     padding-left 20px
     color white
+
+    +below($width-s)
+      font-size 14px
 
     &:before
       background rgba(135,206,250,1)
