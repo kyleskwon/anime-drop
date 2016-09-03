@@ -6,3 +6,9 @@ container()
 below(width)
   @media (max-width: width)
     {block}
+
+clearfix()
+  &:after
+    content: "";
+    display: table;
+    clear: both;
