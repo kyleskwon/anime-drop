@@ -21,6 +21,10 @@ const Character = ({charDetail: {name_first, name_last, image_url_med, actor}}) 
   </li>
 )
 
+// const Genres = (genreList) => {
+//   ge
+// }
+
 class AnimeDetails extends React.Component {
   props: {
     animeCache: Array<Object>,
@@ -49,7 +53,10 @@ class AnimeDetails extends React.Component {
     if (details) {
       let averageScore = formatScore(details.average_score),
           description = details.description.replace(/<[^>]*>/ig, ""),
+          genres = details.genres.map((genresList, i) => <li className="genres-list-item" key={i}>{genresList}</li>),
           characters
+
+      console.log(genres)
       if (details.characters.length > 0) {
         characters = details.characters.slice(0, 7)
           .map((charDetail, i) => <Character charDetail={charDetail} key={i}/>)
@@ -60,8 +67,10 @@ class AnimeDetails extends React.Component {
           <div className="side-details-container">
             <p className="title">{details.title_romaji}</p>
             <p className="title-japanese">{details.title_japanese}</p>
-            <p className="average-score">Rating: {averageScore}</p>
-            <p>Airing Status: {details.airing_status}</p>
+            <ul className="genres">{genres}</ul>
+            <p className="average-score">Rating: {averageScore}/10</p>
+            <p>Episodes: {details.total_episodes}</p>
+            <p>Status: {details.airing_status}</p>
           </div>
           <div className="bottom-details-container">
             <h3>SYNOPSIS</h3>
