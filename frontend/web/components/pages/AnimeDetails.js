@@ -52,7 +52,6 @@ class AnimeDetails extends React.Component {
           genres = details.genres.map((genresList, i) => <li className="genres-list-item" key={i}>{genresList}</li>),
           characters
 
-      console.log(genres)
       if (details.characters.length > 0) {
         characters = details.characters.slice(0, 7)
           .map((charDetail, i) => <Character charDetail={charDetail} key={i}/>)
