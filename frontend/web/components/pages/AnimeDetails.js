@@ -21,10 +21,6 @@ const Character = ({charDetail: {name_first, name_last, image_url_med, actor}}) 
   </li>
 )
 
-// const Genres = (genreList) => {
-//   ge
-// }
-
 class AnimeDetails extends React.Component {
   props: {
     animeCache: Array<Object>,
