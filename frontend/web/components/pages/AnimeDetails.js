@@ -3,7 +3,7 @@ import React from 'react'
 import { getAnimeDetails } from '../../../actions/animeDetails'
 import { connect } from 'react-redux'
 import Loader from '../Loader'
-import formatScore from '../../../utils'
+import {formatScore, capitalise} from '../../../utils'
 
 const Character = ({charDetail: {name_first, name_last, image_url_med, actor}}) => (
   <li className="character-card">
@@ -65,7 +65,7 @@ class AnimeDetails extends React.Component {
             <ul className="genres">{genres}</ul>
             <p className="average-score">Rating: {averageScore}/10</p>
             <p>Episodes: {details.total_episodes}</p>
-            <p>Status: {details.airing_status}</p>
+            <p>Status: {capitalise(details.airing_status)}</p>
           </div>
           <div className="bottom-details-container">
             <h3>SYNOPSIS</h3>
