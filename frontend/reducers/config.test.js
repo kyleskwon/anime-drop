@@ -1,5 +1,3 @@
-jest.unmock('./config'); // unmock to use the actual implementation of sum
-
 import config from './config';
 
 describe('config Reducer', () => {

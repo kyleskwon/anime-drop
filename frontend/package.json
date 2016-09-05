@@ -13,7 +13,6 @@
     "deploy": "npm run build && cd build && mv index.html 200.html && surge . --domain animedrop.com"
   },
   "jest": {
-    "automock": false,
     "testRegex": "\\.test\\.js$",
     "setupFiles": [
       "./setupJest.js"

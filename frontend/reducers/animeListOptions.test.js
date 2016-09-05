@@ -1,5 +1,3 @@
-jest.unmock('./animeListOptions')
-
 import animeListOptions from './animeListOptions'
 
 describe('animeListOptions Reducer', () => {

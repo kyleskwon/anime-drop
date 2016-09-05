@@ -1,5 +1,3 @@
-jest.unmock('./animeCache')
-
 import animeCache from './animeCache'
 
 describe('anime cache adds anime to cache', () => {

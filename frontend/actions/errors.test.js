@@ -1,5 +1,3 @@
-jest.unmock('./errors')
-
 import { serverError } from './errors'
 
 describe('Errors action creators', () => {

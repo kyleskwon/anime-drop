@@ -1,5 +1,3 @@
-jest.unmock('./seasons')
-
 import seasons from './seasons'
 
 describe('Seasons Reducer', () => {
