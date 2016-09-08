@@ -63,7 +63,7 @@ $ npm test -- --no-cache
 
 - [ ] - Add Prequel/Sequel if they have one
 - [ ] - Add video trailer embed
-- [ ] - Add Genres
+- [✔] - Add Genres
 - [ ] - Add links ( Official, Crunchyroll, Hulu, twitter) to AnimeDetails. Don't show if doesn't exist.
-- [ ] - Add Airing state
-- [ ] - Add Total Episodes
+- [✔] - Add Airing state
+- [✔] - Add Total Episodes
