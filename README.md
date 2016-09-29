@@ -67,3 +67,4 @@ $ npm test -- --no-cache
 - [ ] - Add links ( Official, Crunchyroll, Hulu, twitter) to AnimeDetails. Don't show if doesn't exist.
 - [x] - Add Airing state
 - [x] - Add Total Episodes
+# anime-drop
